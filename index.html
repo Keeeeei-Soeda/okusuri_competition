@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEDICAL GOLF CUP 2026 ｜ 第3回 メディカルゴルフカップ</title>
+<meta name="description" content="医療・ヘルスケアに携わる方のための交流ゴルフコンペ「MEDICAL GOLF CUP 2026」。2026年10月17日（土）東雲カントリークラブにて開催。新ペリア方式・定員60名。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#07190F;
+  --green-deep:#0B2A1B;
+  --green:#123B27;
+  --green-mid:#1B5136;
+  --green-line:rgba(200,163,74,.22);
+  --gold:#C8A34A;
+  --gold-light:#EFDCA6;
+  --gold-deep:#8A6A28;
+  --ivory:#EDEFE6;
+  --ivory-dim:rgba(237,239,230,.62);
+  --ivory-faint:rgba(237,239,230,.38);
+
+  --display:"Cormorant Garamond","Noto Serif JP",serif;
+  --jp:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+
+  --pad:clamp(20px,5vw,64px);
+  --maxw:1160px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--green-deep);
+  color:var(--ivory);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---------- 共通パーツ ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+.eyebrow{
+  font-family:var(--display);
+  font-size:.78rem;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:1.6rem;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--green-line),transparent)}
+
+.h2{
+  font-family:var(--jp);
+  font-weight:300;
+  font-size:clamp(1.7rem,3.6vw,2.9rem);
+  line-height:1.55;
+  letter-spacing:.04em;
+}
+.h2 em{font-style:normal;color:var(--gold-light)}
+
+.lede{
+  margin-top:1.6rem;
+  max-width:44em;
+  color:var(--ivory-dim);
+  font-size:.97rem;
+  letter-spacing:.03em;
+}
+
+.rule{height:1px;background:var(--green-line)}
+
+.gold-btn,.ghost-btn{
+  display:inline-flex;align-items:center;gap:.7em;
+  font-family:var(--sans);font-size:.86rem;font-weight:400;
+  letter-spacing:.16em;
+  padding:1.05em 2.3em;
+  border-radius:2px;
+  transition:.45s cubic-bezier(.2,.7,.3,1);
+}
+.gold-btn{
+  background:linear-gradient(105deg,var(--gold-deep),var(--gold) 38%,var(--gold-light) 52%,var(--gold) 66%,var(--gold-deep));
+  background-size:220% 100%;
+  color:#10301F;font-weight:500;
+  box-shadow:0 10px 34px -14px rgba(200,163,74,.7);
+}
+.gold-btn:hover{background-position:100% 0;transform:translateY(-2px)}
+.ghost-btn{border:1px solid var(--green-line);color:var(--ivory-dim)}
+.ghost-btn:hover{border-color:var(--gold);color:var(--gold-light)}
+
+/* ---------- 出現アニメーション ---------- */
+.rise{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.3,1)}
+.rise.in{opacity:1;transform:none}
+.rise[data-d="1"]{transition-delay:.12s}
+.rise[data-d="2"]{transition-delay:.24s}
+.rise[data-d="3"]{transition-delay:.36s}
+
+/* ---------- ヘッダー ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  transition:.5s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(7,25,15,.9);
+  backdrop-filter:blur(14px);
+  border-bottom-color:var(--green-line);
+}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding-top:1.1rem;padding-bottom:1.1rem}
+.brand{display:flex;align-items:center;gap:.85rem}
+.brand svg{width:34px;height:34px;flex:none}
+.brand b{font-family:var(--display);font-size:1.02rem;letter-spacing:.2em;font-weight:500;color:var(--gold-light)}
+.brand span{display:block;font-size:.6rem;letter-spacing:.24em;color:var(--ivory-faint);font-family:var(--sans)}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:.79rem;letter-spacing:.1em;color:var(--ivory-dim);transition:.3s}
+nav a:hover{color:var(--gold-light)}
+nav .entry{
+  border:1px solid var(--gold);color:var(--gold-light);
+  padding:.62em 1.5em;border-radius:2px;
+}
+nav .entry:hover{background:var(--gold);color:#10301F}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:26px;height:1px;background:var(--gold-light);margin:6px 0;transition:.35s}
+
+/* ---------- ヒーロー ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--ink)}
+.hero .topo{position:absolute;inset:-12% -6%;opacity:.5;pointer-events:none}
+.hero .topo svg{width:100%;height:100%}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 78% at 50% 42%,transparent 30%,rgba(7,25,15,.86) 100%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;text-align:center;padding:11rem 0 7rem}
+
+.crest{width:104px;height:104px;margin:0 auto 2.4rem}
+.crest svg{width:100%;height:100%}
+
+.hero .kicker{
+  font-family:var(--display);font-size:.8rem;letter-spacing:.48em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:2rem;
+}
+.hero h1{
+  font-family:var(--jp);font-weight:200;
+  font-size:clamp(2.3rem,6.6vw,4.6rem);
+  line-height:1.42;letter-spacing:.06em;
+}
+.hero h1 .g{
+  background:linear-gradient(100deg,var(--gold-deep),var(--gold-light) 45%,var(--gold) 70%,var(--gold-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .sub{margin:2.2rem auto 0;max-width:34em;color:var(--ivory-dim);font-size:.95rem;letter-spacing:.05em}
+
+.meta{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:clamp(1.4rem,4vw,3.4rem);
+  margin:3rem 0 3.2rem;
+}
+.meta div{text-align:center}
+.meta dt{font-family:var(--display);font-size:.68rem;letter-spacing:.34em;color:var(--gold);text-transform:uppercase;margin-bottom:.55rem}
+.meta dd{font-family:var(--jp);font-size:clamp(.98rem,1.9vw,1.2rem);letter-spacing:.06em}
+.hero-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem}
+
+.scrollcue{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:3;text-align:center}
+.scrollcue span{font-family:var(--display);font-size:.62rem;letter-spacing:.4em;color:var(--ivory-faint)}
+.scrollcue i{display:block;width:1px;height:52px;margin:.8rem auto 0;background:linear-gradient(var(--gold),transparent);animation:cue 2.6s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.3);opacity:.35;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+
+/* ---------- セクション枠 ---------- */
+section{position:relative}
+.band{padding:clamp(5rem,11vw,9rem) 0}
+.band--light{background:var(--ivory);color:#123B27}
+.band--light .lede{color:rgba(18,59,39,.72)}
+.band--light .eyebrow{color:var(--gold-deep)}
+.band--light .eyebrow::after{background:linear-gradient(90deg,rgba(18,59,39,.2),transparent)}
+.band--light .h2 em{color:var(--gold-deep)}
+.band--deep{background:var(--ink)}
+
+/* ---------- 大会について ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
+.pillars{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:3.4rem}
+.pillar{background:var(--green-deep);padding:2.2rem clamp(1.4rem,3vw,2.4rem)}
+.pillar h3{font-family:var(--jp);font-weight:400;font-size:1.06rem;letter-spacing:.05em;margin-bottom:.7rem;color:var(--gold-light)}
+.pillar p{font-size:.87rem;color:var(--ivory-dim);line-height:1.95}
+@media(min-width:760px){.pillars{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- 開催概要 ---------- */
+.spec{border:1px solid rgba(18,59,39,.16);background:#fff;box-shadow:0 30px 70px -50px rgba(11,42,27,.6)}
+.spec-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding:1.5rem clamp(1.3rem,3vw,2.4rem);
+  background:linear-gradient(100deg,var(--green),var(--green-mid));
+  color:var(--ivory);
+}
+.spec-head b{font-family:var(--display);letter-spacing:.3em;font-size:.82rem;text-transform:uppercase;color:var(--gold-light);font-weight:500}
+.spec-head small{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--ivory-faint)}
+.spec dl{display:grid;grid-template-columns:auto 1fr}
+.spec dt,.spec dd{border-bottom:1px solid rgba(18,59,39,.1);padding:1.15rem clamp(1.3rem,3vw,2.4rem)}
+.spec dt{
+  font-family:var(--sans);font-size:.76rem;letter-spacing:.18em;font-weight:400;
+  color:rgba(18,59,39,.55);white-space:nowrap;background:rgba(18,59,39,.03);
+}
+.spec dd{font-family:var(--jp);font-size:.97rem;letter-spacing:.03em}
+.spec dd b{color:var(--gold-deep);font-weight:600}
+.spec dd small{display:block;font-family:var(--sans);font-size:.78rem;color:rgba(18,59,39,.58);margin-top:.3rem;letter-spacing:.02em}
+@media(max-width:640px){
+  .spec dl{grid-template-columns:1fr}
+  .spec dt{border-bottom:0;padding-bottom:.2rem;background:none}
+}
+
+/* ---------- スコアカード（当日の流れ） ---------- */
+.card{
+  margin-top:3.4rem;border:1px solid var(--green-line);
+  background:linear-gradient(180deg,rgba(27,81,54,.35),rgba(11,42,27,.35));
+}
+.card-top{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+  padding:1.3rem clamp(1.2rem,3vw,2.2rem);border-bottom:1px solid var(--green-line);
+}
+.card-top b{font-family:var(--display);letter-spacing:.34em;font-size:.8rem;text-transform:uppercase;color:var(--gold);font-weight:500}
+.card-top span{font-size:.74rem;letter-spacing:.16em;color:var(--ivory-faint)}
+.row{
+  display:grid;grid-template-columns:5.6rem 1fr auto;
+  gap:clamp(1rem,3vw,2.4rem);align-items:baseline;
+  padding:1.4rem clamp(1.2rem,3vw,2.2rem);
+  border-bottom:1px solid rgba(200,163,74,.11);
+  transition:background .4s ease;
+}
+.row:last-child{border-bottom:0}
+.row:hover{background:rgba(200,163,74,.05)}
+.row .t{font-family:var(--display);font-size:1.22rem;letter-spacing:.08em;color:var(--gold)}
+.row .n{font-family:var(--jp);font-size:1rem;letter-spacing:.05em}
+.row .n small{display:block;font-family:var(--sans);font-size:.79rem;color:var(--ivory-faint);margin-top:.25rem;letter-spacing:.02em}
+.row .p{font-size:.75rem;letter-spacing:.14em;color:var(--ivory-faint);white-space:nowrap}
+.turn{
+  display:flex;align-items:center;gap:1.1rem;
+  padding:.85rem clamp(1.2rem,3vw,2.2rem);
+  background:rgba(200,163,74,.07);
+  border-bottom:1px solid rgba(200,163,74,.11);
+  font-family:var(--display);letter-spacing:.36em;font-size:.72rem;text-transform:uppercase;color:var(--gold);
+}
+.turn::after{content:"";flex:1;height:1px;background:var(--green-line)}
+@media(max-width:640px){
+  .row{grid-template-columns:4.4rem 1fr}
+  .row .p{grid-column:2;letter-spacing:.1em}
+}
+
+/* ---------- 賞典 ---------- */
+.prize-main{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:3.4rem}
+.prize{background:var(--ink);padding:2.8rem clamp(1.4rem,3vw,2rem);text-align:center;position:relative;overflow:hidden}
+.prize .rank{font-family:var(--display);font-size:.72rem;letter-spacing:.36em;text-transform:uppercase;color:var(--ivory-faint);margin-bottom:1.3rem}
+.prize .medal{width:56px;height:56px;margin:0 auto 1.4rem}
+.prize h3{font-family:var(--jp);font-weight:400;font-size:1.22rem;letter-spacing:.08em;margin-bottom:.6rem}
+.prize p{font-size:.83rem;color:var(--ivory-dim)}
+.prize--first{background:linear-gradient(175deg,rgba(200,163,74,.14),transparent 62%),var(--ink)}
+.prize--first h3{color:var(--gold-light);font-size:1.42rem}
+.prize--first .rank{color:var(--gold)}
+@media(min-width:760px){.prize-main{grid-template-columns:1fr 1.25fr 1fr;align-items:stretch}}
+
+.prize-sub{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);border-top:0;margin-bottom:0}
+.sub{background:var(--ink);padding:1.4rem clamp(1.1rem,2.5vw,1.6rem);display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.sub b{font-family:var(--jp);font-weight:400;font-size:.94rem;letter-spacing:.05em}
+.sub span{font-size:.76rem;color:var(--ivory-faint);letter-spacing:.08em;text-align:right}
+@media(min-width:640px){.prize-sub{grid-template-columns:1fr 1fr}}
+
+/* ---------- 会場 ---------- */
+.venue{display:grid;gap:clamp(2.4rem,5vw,4.5rem);align-items:center}
+@media(min-width:900px){.venue{grid-template-columns:1.05fr .95fr}}
+.venue-visual{position:relative;aspect-ratio:4/3;background:linear-gradient(165deg,var(--green-mid),var(--ink));overflow:hidden;border:1px solid var(--green-line)}
+.venue-visual svg{position:absolute;inset:0;width:100%;height:100%}
+.venue-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:2.6rem}
+.venue-stats div{background:var(--green-deep);padding:1.5rem 1rem;text-align:center}
+.venue-stats dt{font-family:var(--display);font-size:.64rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.venue-stats dd{font-family:var(--display);font-size:1.6rem;letter-spacing:.04em;color:var(--ivory)}
+.venue-stats dd i{font-style:normal;font-size:.72rem;font-family:var(--sans);color:var(--ivory-faint);margin-left:.25em}
+
+/* ---------- FAQ ---------- */
+.faq{margin-top:3rem;border-top:1px solid rgba(18,59,39,.14)}
+.faq details{border-bottom:1px solid rgba(18,59,39,.14)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:1.5rem 2.5rem 1.5rem 0;position:relative;
+  font-family:var(--jp);font-size:1rem;letter-spacing:.04em;transition:color .3s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--gold-deep)}
+.faq summary::after{
+  content:"";position:absolute;right:.4rem;top:50%;width:11px;height:11px;
+  border-right:1px solid var(--gold-deep);border-bottom:1px solid var(--gold-deep);
+  transform:translateY(-70%) rotate(45deg);transition:.35s;
+}
+.faq details[open] summary::after{transform:translateY(-20%) rotate(-135deg)}
+.faq p{padding:0 0 1.7rem;font-size:.89rem;color:rgba(18,59,39,.74);max-width:52em}
+
+/* ---------- エントリー ---------- */
+.entry-band{position:relative;background:var(--ink);overflow:hidden;text-align:center}
+.entry-band .topo{position:absolute;inset:-20% -10%;opacity:.32;pointer-events:none}
+.entry-band .inner{position:relative;z-index:2}
+.entry-band h2{font-family:var(--jp);font-weight:200;font-size:clamp(1.8rem,4.4vw,3.1rem);line-height:1.5;letter-spacing:.06em}
+.deadline{
+  display:inline-flex;align-items:center;gap:.8rem;margin:2.4rem 0 2.6rem;
+  border:1px solid var(--green-line);padding:.8em 1.6em;border-radius:2px;
+  font-size:.82rem;letter-spacing:.12em;color:var(--ivory-dim);
+}
+.deadline b{color:var(--gold-light);font-family:var(--jp);font-weight:400;letter-spacing:.06em}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(200,163,74,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 11px rgba(200,163,74,0)}100%{box-shadow:0 0 0 0 rgba(200,163,74,0)}}
+
+/* ---------- フッター ---------- */
+footer{background:var(--green-deep);border-top:1px solid var(--green-line);padding:clamp(3.5rem,7vw,5.5rem) 0 2.5rem}
+.foot-grid{display:grid;gap:2.8rem}
+@media(min-width:840px){.foot-grid{grid-template-columns:1.4fr 1fr 1.2fr}}
+.foot-grid h4{font-family:var(--display);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem;font-weight:500}
+.foot-grid p,.foot-grid li,.foot-grid dd{font-size:.83rem;color:var(--ivory-dim);letter-spacing:.03em}
+.foot-grid ul{list-style:none;display:grid;gap:.6rem}
+.foot-grid ul a:hover{color:var(--gold-light)}
+.foot-grid dl{display:grid;grid-template-columns:5.5rem 1fr;gap:.7rem 1rem}
+.foot-grid dt{font-size:.72rem;letter-spacing:.14em;color:var(--ivory-faint)}
+.copy{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--green-line);font-size:.72rem;letter-spacing:.12em;color:var(--ivory-faint);text-align:center}
+
+/* ---------- レスポンシブ ---------- */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .burger{display:block}
+  nav{
+    position:fixed;inset:0 0 0 auto;width:min(78vw,320px);
+    background:rgba(7,25,15,.97);backdrop-filter:blur(16px);
+    flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:1.8rem;padding:0 2.2rem;border-left:1px solid var(--green-line);
+    transform:translateX(100%);transition:.5s cubic-bezier(.2,.7,.3,1);
+  }
+  nav.open{transform:none}
+  nav a{font-size:.95rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .rise{opacity:1;transform:none}
+}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="hd">
+  <div class="wrap bar">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5" stroke="#C8A34A" stroke-width="1"/>
+        <circle cx="20" cy="20" r="14" stroke="#C8A34A" stroke-width=".5" opacity=".5"/>
+        <path d="M17 11v18" stroke="#C8A34A" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M17 11l8 3-8 3.2V11z" fill="#C8A34A"/>
+        <path d="M13 29h9" stroke="#EFDCA6" stroke-width=".8" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <b>MEDICAL GOLF CUP</b>
+        <span>第3回 メディカルゴルフカップ 2026</span>
+      </span>
+    </a>
+    <nav id="nav">
+      <a href="#about">大会について</a>
+      <a href="#outline">開催概要</a>
+      <a href="#schedule">当日の流れ</a>
+      <a href="#prize">賞典</a>
+      <a href="#venue">会場</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#entry" class="entry">エントリー</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="topo" aria-hidden="true">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="#C8A34A" stroke-width="1">
+        <path d="M600 120C820 120 980 260 980 400s-160 280-380 280S220 540 220 400 380 120 600 120z" opacity=".30"/>
+        <path d="M600 170C790 170 930 275 930 400s-140 230-330 230-330-105-330-230 140-230 330-230z" opacity=".26"/>
+        <path d="M604 218C766 214 884 300 886 400c2 100-116 186-282 186S320 500 320 400s122-178 284-182z" opacity=".22"/>
+        <path d="M608 264c136-4 230 60 232 136 2 76-96 142-232 142s-236-66-234-142c2-76 98-132 234-136z" opacity=".19"/>
+        <path d="M612 310c106-2 178 42 180 92 2 50-74 96-180 96s-182-46-180-96c2-50 74-94 180-92z" opacity=".16"/>
+        <path d="M614 356c74 0 126 22 126 46s-52 48-126 48-128-24-128-48 54-46 128-46z" opacity=".13"/>
+        <path d="M40 640c180-40 300 30 470 10s280-80 470-40" opacity=".14"/>
+        <path d="M20 706c200-46 320 34 500 12s300-78 500-34" opacity=".11"/>
+        <path d="M60 84c190 44 300-26 470-8s290 74 480 30" opacity=".11"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap hero-inner">
+    <div class="crest rise" data-d="0">
+      <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <circle cx="60" cy="60" r="57" stroke="#C8A34A" stroke-width=".9"/>
+        <circle cx="60" cy="60" r="50" stroke="#C8A34A" stroke-width=".5" opacity=".45"/>
+        <path d="M60 22v52" stroke="#EFDCA6" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M60 22l20 7.5-20 8V22z" fill="#C8A34A"/>
+        <circle cx="60" cy="80" r="4.2" fill="#EFDCA6"/>
+        <path d="M38 92c6 4 14 6 22 6s16-2 22-6" stroke="#C8A34A" stroke-width=".9" stroke-linecap="round"/>
+        <text x="60" y="110" text-anchor="middle" fill="#C8A34A" font-family="Cormorant Garamond,serif" font-size="9" letter-spacing="3">2026</text>
+      </svg>
+    </div>
+
+    <p class="kicker rise" data-d="1">Invitational Golf Tournament</p>
+    <h1 class="rise" data-d="1">その一打が、<br><span class="g">次の縁になる。</span></h1>
+    <p class="sub rise" data-d="2">医療・介護・ヘルスケアに携わる方が、職種や立場を越えて一日をともにする交流コンペです。スコアの巧拙は問いません。初参加の方が半数を占めます。</p>
+
+    <dl class="meta rise" data-d="2">
+      <div><dt>Date</dt><dd>2026.10.17（土）</dd></div>
+      <div><dt>Venue</dt><dd>東雲カントリークラブ</dd></div>
+      <div><dt>Format</dt><dd>新ペリア方式</dd></div>
+      <div><dt>Field</dt><dd>60名（15組）</dd></div>
+    </dl>
+
+    <div class="hero-cta rise" data-d="3">
+      <a href="#entry" class="gold-btn">エントリーする</a>
+      <a href="#outline" class="ghost-btn">開催概要を見る</a>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="band" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="rise">
+        <p class="eyebrow">About the Cup</p>
+        <h2 class="h2">競うためではなく、<br><em>出会うために回る</em>一日。</h2>
+      </div>
+      <div class="rise" data-d="1">
+        <p class="lede">医療の現場は、職種ごとに世界が分かれがちです。医師と薬剤師、病院と施設、経営と現場。同じ患者を見ていても、話す機会はそう多くありません。</p>
+        <p class="lede">このコンペは、その線を一日だけ引き直す場です。組み合わせは主催者が編成し、同じ職種が同組にならないよう配慮します。4時間半を並んで歩けば、名刺交換では届かないところまで話が進みます。</p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar rise"><h3>組み合わせは主催者が編成</h3><p>職種・所属・経験年数のバランスを見て15組を編成します。同じ職場の方は別組になります。当日の朝、受付で組み合わせ表をお渡しします。</p></div>
+      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホール12を用いたハンディキャップ方式のため、平均スコア110前後の方にも優勝の可能性があります。初参加の方が上位に入るのは珍しくありません。</p></div>
+      <div class="pillar rise" data-d="2"><h3>表彰パーティーまでが本編</h3><p>プレー後は同じ会場で表彰パーティーを行います。全参加者に賞品が渡るよう飛び賞を設定し、席は組を崩して配置します。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 開催概要 ============ -->
+<section class="band band--light" id="outline">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Tournament Outline</p>
+      <h2 class="h2">開催概要</h2>
+      <p class="lede">参加費にはプレー費・昼食・表彰パーティー・賞品代を含みます。当日の追加のお支払いはキャディフィのみです。</p>
+    </div>
+
+    <div class="spec rise" data-d="1" style="margin-top:3.4rem">
+      <div class="spec-head">
+        <b>Medical Golf Cup 2026</b>
+        <small>第3回大会 ／ 主催：メディカルゴルフ交流会</small>
+      </div>
+      <dl>
+        <dt>開催日</dt>
+        <dd><b>2026年10月17日（土）</b><small>雨天決行。荒天中止の場合は前日18時までにメールでご連絡します。</small></dd>
+        <dt>会場</dt>
+        <dd>東雲カントリークラブ 丘陵コース<small>大阪府南河内郡／阪和自動車道 美原北ICより約20分</small></dd>
+        <dt>集合</dt>
+        <dd>7:00 受付開始 ／ 8:00 アウトインスタート<small>スタート30分前までにクラブハウスへお越しください。</small></dd>
+        <dt>競技方法</dt>
+        <dd>18ホール ストロークプレー・新ペリア方式<small>隠しホール12。ローカルルールはスタート室掲示に準じます。</small></dd>
+        <dt>参加費</dt>
+        <dd><b>22,000円</b>（税込）<small>プレー費・昼食・表彰パーティー・賞品代を含む。キャディフィは当日別途。</small></dd>
+        <dt>定員</dt>
+        <dd>60名（15組）<small>定員に達し次第、締め切ります。キャンセル待ちを受け付けます。</small></dd>
+        <dt>申込締切</dt>
+        <dd>2026年9月30日（水）23:59<small>10月10日以降のキャンセルは参加費の50%を申し受けます。</small></dd>
+        <dt>服装</dt>
+        <dd>コース規定に準じます<small>ジャケット着用でのご来場、シャツの裾はパンツ内へお入れください。</small></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 当日の流れ（スコアカード） ============ -->
+<section class="band band--deep" id="schedule">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Card of the Day</p>
+      <h2 class="h2">当日の流れ</h2>
+      <p class="lede">受付から解散まで、一日の進行をスコアカードの形でまとめました。時刻は目安です。進行状況により前後します。</p>
+    </div>
+
+    <div class="card rise" data-d="1">
+      <div class="card-top">
+        <b>Saturday, 17 October 2026</b>
+        <span>東雲カントリークラブ 丘陵コース</span>
+      </div>
+
+      <div class="turn">Front Nine</div>
+      <div class="row"><span class="t">7:00</span><span class="n">受付<small>組み合わせ表・スコアカード・ロッカーキーをお渡しします</small></span><span class="p">クラブハウス</span></div>
+      <div class="row"><span class="t">7:40</span><span class="n">開会あいさつ・記念撮影<small>全体で5分程度。遅れた場合はスタート室へ直接お越しください</small></span><span class="p">プラクティスグリーン前</span></div>
+      <div class="row"><span class="t">8:00</span><span class="n">アウト・インスタート<small>1番／10番から同時スタート。カートはGPSナビ付き</small></span><span class="p">1番・10番ホール</span></div>
+
+      <div class="turn">Turn</div>
+      <div class="row"><span class="t">10:30</span><span class="n">昼食（約50分）<small>スタート時に注文票をお預かりします。3種から選択</small></span><span class="p">レストラン 芝</span></div>
+
+      <div class="turn">Back Nine</div>
+      <div class="row"><span class="t">11:20</span><span class="n">後半スタート</span><span class="p">10番・1番ホール</span></div>
+      <div class="row"><span class="t">15:30</span><span class="n">プレー終了・スコア提出<small>アテスト後、受付横の回収箱へご提出ください</small></span><span class="p">クラブハウス</span></div>
+
+      <div class="turn">19th Hole</div>
+      <div class="row"><span class="t">17:00</span><span class="n">表彰パーティー<small>席は組を崩して配置します。ジャケット着用</small></span><span class="p">宴会場 松風</span></div>
+      <div class="row"><span class="t">19:00</span><span class="n">解散<small>難波駅・天王寺駅への送迎バスを運行します（要事前予約）</small></span><span class="p">正面エントランス</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 賞典 ============ -->
+<section class="band" id="prize">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Prizes</p>
+      <h2 class="h2">賞典</h2>
+      <p class="lede">上位入賞に加え、飛び賞を10位刻みで設定しています。参加者全員に賞品が渡ります。</p>
+    </div>
+
+    <div class="prize-main rise" data-d="1">
+      <div class="prize">
+        <p class="rank">Runner-up</p>
+        <div class="medal">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="34" r="17" stroke="#C8A34A" stroke-width="1" opacity=".7"/>
+            <path d="M22 10l8 12 8-12" stroke="#C8A34A" stroke-width="1" opacity=".7"/>
+            <text x="30" y="39" text-anchor="middle" fill="#C8A34A" font-family="Cormorant Garamond,serif" font-size="15" opacity=".8">2</text>
+          </svg>
+        </div>
+        <h3>準優勝</h3>
+        <p>トロフィー／ゴルフ場利用券 1万円分</p>
+      </div>
+
+      <div class="prize prize--first">
+        <p class="rank">Champion</p>
+        <div class="medal">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="34" r="19" stroke="#EFDCA6" stroke-width="1.2"/>
+            <circle cx="30" cy="34" r="15" stroke="#C8A34A" stroke-width=".6" opacity=".6"/>
+            <path d="M20 8l10 13 10-13" stroke="#EFDCA6" stroke-width="1.2"/>
+            <text x="30" y="40" text-anchor="middle" fill="#EFDCA6" font-family="Cormorant Garamond,serif" font-size="17">1</text>
+          </svg>
+        </div>
+        <h3>優勝</h3>
+        <p>優勝カップ（持ち回り）／副賞：次回大会 参加費無料<br>受賞者は次回大会の始球式にご登壇いただきます</p>
+      </div>
+
+      <div class="prize">
+        <p class="rank">Third place</p>
+        <div class="medal">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="34" r="17" stroke="#C8A34A" stroke-width="1" opacity=".55"/>
+            <path d="M22 10l8 12 8-12" stroke="#C8A34A" stroke-width="1" opacity=".55"/>
+            <text x="30" y="39" text-anchor="middle" fill="#C8A34A" font-family="Cormorant Garamond,serif" font-size="15" opacity=".7">3</text>
+          </svg>
+        </div>
+        <h3>第3位</h3>
+        <p>トロフィー／ゴルフ場利用券 5千円分</p>
+      </div>
+    </div>
+
+    <div class="prize-sub rise" data-d="2">
+      <div class="sub"><b>ベストグロス賞</b><span>グロススコア最少</span></div>
+      <div class="sub"><b>ドラコン賞</b><span>男性 4番 ／ 女性 12番</span></div>
+      <div class="sub"><b>ニアピン賞</b><span>3番・7番・13番・17番</span></div>
+      <div class="sub"><b>飛び賞</b><span>10位・20位・30位・40位・50位</span></div>
+      <div class="sub"><b>ブービー賞</b><span>下位から2番目</span></div>
+      <div class="sub"><b>初参加賞</b><span>初出場の方 全員</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 会場 ============ -->
+<section class="band band--deep" id="venue">
+  <div class="wrap">
+    <div class="venue">
+      <div class="venue-visual rise" aria-hidden="true">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <g fill="none" stroke="#C8A34A">
+            <path d="M-20 210c60-30 120 10 180-10s140-50 250-20" stroke-width=".7" opacity=".28"/>
+            <path d="M-20 240c70-26 130 14 190-6s130-44 240-14" stroke-width=".7" opacity=".22"/>
+            <path d="M-20 180c50-34 120 6 170-16s150-40 260-10" stroke-width=".7" opacity=".2"/>
+            <ellipse cx="272" cy="110" rx="72" ry="42" stroke-width=".8" opacity=".3"/>
+            <ellipse cx="272" cy="110" rx="52" ry="30" stroke-width=".6" opacity=".24"/>
+            <ellipse cx="272" cy="110" rx="32" ry="18" stroke-width=".5" opacity=".18"/>
+            <path d="M20 268c40-70 60-120 110-150" stroke-width="1" opacity=".22"/>
+          </g>
+          <path d="M272 110V58" stroke="#EFDCA6" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M272 58l16 6-16 6.5V58z" fill="#C8A34A"/>
+          <circle cx="272" cy="110" r="2.6" fill="#EFDCA6"/>
+        </svg>
+      </div>
+      <div class="rise" data-d="1">
+        <p class="eyebrow">The Course</p>
+        <h2 class="h2">東雲カントリークラブ<br><em>丘陵コース</em></h2>
+        <p class="lede">南河内の丘陵地に広がる18ホール。フェアウェイは広く取られ、飛距離よりも second shot の判断が問われる設計です。グリーンは高麗と洋芝の2グリーン、当日は洋芝を使用します。</p>
+        <p class="lede">クラブハウスからは金剛山系を一望できます。レストランは河内鴨を使った名物メニューがあり、昼食はここから3種お選びいただきます。</p>
+        <dl class="venue-stats">
+          <div><dt>Par</dt><dd>72</dd></div>
+          <div><dt>Yards</dt><dd>6,412<i>Y</i></dd></div>
+          <div><dt>Access</dt><dd>20<i>分</i></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="band band--light" id="faq">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Questions</p>
+      <h2 class="h2">よくある質問</h2>
+    </div>
+    <div class="faq rise" data-d="1">
+      <details open><summary>ゴルフを始めたばかりですが、参加できますか。</summary><p>参加いただけます。前回大会は参加者の46%が競技歴3年未満でした。新ペリア方式のため平均スコアに関わらず上位入賞の可能性があります。ハーフ70打を超える場合はピックアップをお願いすることがあります。</p></details>
+      <details><summary>一人での申し込みでも大丈夫ですか。</summary><p>一人でのお申し込みが最も多く、全体の6割を占めます。組み合わせは主催者が編成しますので、同伴者の手配は不要です。</p></details>
+      <details><summary>医療関係者以外も参加できますか。</summary><p>参加者ご本人が医療・介護・ヘルスケア関連の業務に携わっていることを条件としています。製薬・医療機器・ヘルステック企業の方も対象です。ご同伴者の参加はお受けしていません。</p></details>
+      <details><summary>クラブのレンタルはありますか。</summary><p>会場でレンタルクラブ（1セット 3,300円）とシューズ（1,100円）をご用意しています。エントリーフォームの備考欄にご記入ください。当日の受付では手配できかねます。</p></details>
+      <details><summary>表彰パーティーだけの参加はできますか。</summary><p>プレーを伴わない参加はお受けしていません。当日の体調不良等でプレーを取りやめた場合は、パーティーからご合流いただけます。</p></details>
+      <details><summary>キャンセルはいつまで可能ですか。</summary><p>10月9日（金）までは無料でキャンセルできます。10月10日以降は参加費の50%、当日の連絡なしの不参加は全額を申し受けます。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ エントリー ============ -->
+<section class="band entry-band" id="entry">
+  <div class="topo" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="#C8A34A" stroke-width="1">
+        <path d="M600 60c210 0 360 110 360 240S810 540 600 540 240 430 240 300 390 60 600 60z" opacity=".22"/>
+        <path d="M600 120c160 0 276 80 276 180s-116 180-276 180-276-80-276-180 116-180 276-180z" opacity=".18"/>
+        <path d="M600 180c112 0 192 54 192 120s-80 120-192 120-192-54-192-120 80-120 192-120z" opacity=".14"/>
+        <path d="M600 240c64 0 110 27 110 60s-46 60-110 60-110-27-110-60 46-60 110-60z" opacity=".1"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap inner">
+    <p class="eyebrow rise" style="justify-content:center">Entry</p>
+    <h2 class="rise" data-d="1">10月17日、<br>東雲でお会いしましょう。</h2>
+    <p class="deadline rise" data-d="2"><i class="dot"></i>申込締切 <b>2026年9月30日（水）</b>／ 残り 18 席</p>
+    <div class="hero-cta rise" data-d="2">
+      <a href="#" class="gold-btn">エントリーフォームへ</a>
+      <a href="#" class="ghost-btn">開催要項をダウンロード（PDF）</a>
+    </div>
+    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">ご不明な点は事務局までお問い合わせください。<br>medical-golf-cup@example.jp ／ 平日 10:00–17:00</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" style="margin-bottom:1.2rem">
+          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="20" cy="20" r="18.5" stroke="#C8A34A" stroke-width="1"/>
+            <path d="M17 11v18" stroke="#C8A34A" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M17 11l8 3-8 3.2V11z" fill="#C8A34A"/>
+          </svg>
+          <span><b>MEDICAL GOLF CUP</b><span>第3回大会 2026</span></span>
+        </a>
+        <p>医療・介護・ヘルスケアに携わる方の交流を目的としたゴルフコンペです。2024年より年1回開催しています。</p>
+      </div>
+      <div>
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#about">大会について</a></li>
+          <li><a href="#outline">開催概要</a></li>
+          <li><a href="#schedule">当日の流れ</a></li>
+          <li><a href="#prize">賞典</a></li>
+          <li><a href="#venue">会場</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+          <li><a href="#entry">エントリー</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Information</h4>
+        <dl>
+          <dt>主催</dt><dd>メディカルゴルフ交流会</dd>
+          <dt>開催日</dt><dd>2026年10月17日（土）</dd>
+          <dt>会場</dt><dd>東雲カントリークラブ 丘陵コース<br>大阪府南河内郡</dd>
+          <dt>事務局</dt><dd>medical-golf-cup@example.jp</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="copy">© 2026 Medical Golf Cup. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+// ヘッダーの背景切り替え
+const hd = document.getElementById('hd');
+const onScroll = () => hd.classList.toggle('scrolled', window.scrollY > 60);
+onScroll();
+window.addEventListener('scroll', onScroll, {passive:true});
+
+// モバイルメニュー
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+burger.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+});
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+}));
+
+// スクロール出現
+const items = document.querySelectorAll('.rise');
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  items.forEach(el => el.classList.add('in'));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  items.forEach(el => io.observe(el));
+  // ヒーローは即時表示
+  document.querySelectorAll('.hero .rise').forEach((el,i) => setTimeout(() => el.classList.add('in'), 120 + i*110));
+}
+</script>
+</body>
+</html>
