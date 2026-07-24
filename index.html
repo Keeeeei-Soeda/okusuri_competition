@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MEDICAL GOLF CUP 2026 ｜ 第3回 メディカルゴルフカップ</title>
-<meta name="description" content="医療・ヘルスケアに携わる方のための交流ゴルフコンペ「MEDICAL GOLF CUP 2026」。2026年10月17日（土）東雲カントリークラブにて開催。新ペリア方式・定員60名。">
+<meta name="description" content="医療・ヘルスケアに携わる方のための交流ゴルフコンペ「MEDICAL GOLF CUP 2026」。2026年11月17日（火）東条の森カントリークラブ 宇城コースにて開催。参加者募集中。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -182,6 +182,26 @@ section{position:relative}
 .band--light .h2 em{color:var(--gold-deep)}
 .band--deep{background:var(--ink)}
 
+/* ---------- お知らせ ---------- */
+.news{padding:clamp(3.2rem,7vw,5rem) 0;border-bottom:1px solid var(--green-line);background:linear-gradient(180deg,rgba(11,42,27,.92),var(--green-deep))}
+.news-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.news-head h2{font-family:var(--jp);font-weight:400;font-size:1.15rem;letter-spacing:.12em}
+.news-list{list-style:none;border-top:1px solid var(--green-line)}
+.news-list a{
+  display:grid;grid-template-columns:7.5rem 1fr auto;gap:1.2rem;align-items:baseline;
+  padding:1.35rem 0;border-bottom:1px solid var(--green-line);
+  transition:color .3s,background .3s;
+}
+.news-list a:hover{color:var(--gold-light)}
+.news-list time{font-family:var(--display);font-size:.78rem;letter-spacing:.14em;color:var(--gold)}
+.news-list .ttl{font-family:var(--jp);font-size:.95rem;letter-spacing:.04em}
+.news-list .ttl small{display:block;font-family:var(--sans);font-size:.78rem;color:var(--ivory-faint);margin-top:.35rem;letter-spacing:.02em}
+.news-list .more{font-size:.72rem;letter-spacing:.16em;color:var(--gold);white-space:nowrap}
+@media(max-width:640px){
+  .news-list a{grid-template-columns:1fr;gap:.45rem}
+  .news-list .more{justify-self:start}
+}
+
 /* ---------- 大会について ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
 .pillars{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:3.4rem}
@@ -279,6 +299,38 @@ section{position:relative}
 .venue-stats dt{font-family:var(--display);font-size:.64rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
 .venue-stats dd{font-family:var(--display);font-size:1.6rem;letter-spacing:.04em;color:var(--ivory)}
 .venue-stats dd i{font-style:normal;font-size:.72rem;font-family:var(--sans);color:var(--ivory-faint);margin-left:.25em}
+.venue-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- ギャラリー ---------- */
+.gallery-grid{
+  display:grid;gap:1px;background:var(--green-line);
+  border:1px solid var(--green-line);margin-top:3.4rem;
+}
+.g-item{
+  position:relative;overflow:hidden;background:var(--ink);
+  aspect-ratio:4/3;
+}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.4s cubic-bezier(.2,.7,.3,1);
+}
+.g-item:hover img{transform:scale(1.045)}
+.g-item figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:.85rem 1.1rem;
+  background:linear-gradient(transparent,rgba(7,25,15,.78));
+  font-family:var(--display);font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold-light);
+}
+@media(min-width:760px){
+  .gallery-grid{
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:minmax(140px,18vw);
+  }
+  .g-item--hero{grid-column:span 4;grid-row:span 2;aspect-ratio:auto}
+  .g-item--side{grid-column:span 2;aspect-ratio:auto}
+  .g-item--wide{grid-column:span 2;aspect-ratio:auto}
+}
 
 /* ---------- FAQ ---------- */
 .faq{margin-top:3rem;border-top:1px solid rgba(18,59,39,.14)}
@@ -364,11 +416,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       </span>
     </a>
     <nav id="nav">
+      <a href="#news">お知らせ</a>
       <a href="#about">大会について</a>
       <a href="#outline">開催概要</a>
       <a href="#schedule">当日の流れ</a>
       <a href="#prize">賞典</a>
       <a href="#venue">会場</a>
+      <a href="#gallery">ギャラリー</a>
       <a href="#faq">よくある質問</a>
       <a href="#entry" class="entry">エントリー</a>
     </nav>
@@ -414,10 +468,10 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <p class="sub rise" data-d="2">医療・介護・ヘルスケアに携わる方が、職種や立場を越えて一日をともにする交流コンペです。スコアの巧拙は問いません。初参加の方が半数を占めます。</p>
 
     <dl class="meta rise" data-d="2">
-      <div><dt>Date</dt><dd>2026.10.17（土）</dd></div>
-      <div><dt>Venue</dt><dd>東雲カントリークラブ</dd></div>
-      <div><dt>Format</dt><dd>新ペリア方式</dd></div>
-      <div><dt>Field</dt><dd>60名（15組）</dd></div>
+      <div><dt>Date</dt><dd>2026.11.17（火）</dd></div>
+      <div><dt>Venue</dt><dd>東条の森カントリークラブ</dd></div>
+      <div><dt>Start</dt><dd>8:00 INスタート</dd></div>
+      <div><dt>Field</dt><dd>16名（4組）</dd></div>
     </dl>
 
     <div class="hero-cta rise" data-d="3">
@@ -427,6 +481,28 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
 
   <div class="scrollcue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</section>
+
+<!-- ============ お知らせ ============ -->
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="news-head rise">
+      <h2>お知らせ</h2>
+      <p class="eyebrow" style="margin:0">Announcements</p>
+    </div>
+    <ul class="news-list">
+      <li class="rise" data-d="1">
+        <a href="#outline">
+          <time datetime="2026-07-24">2026.07.24</time>
+          <span class="ttl">
+            ゴルフコンペ開催のご案内｜参加者募集中
+            <small>2026年11月17日（火）／東条の森カントリークラブ 宇城コース</small>
+          </span>
+          <span class="more">詳細を見る →</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </section>
 
 <!-- ============ ABOUT ============ -->
@@ -444,9 +520,9 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     </div>
 
     <div class="pillars">
-      <div class="pillar rise"><h3>組み合わせは主催者が編成</h3><p>職種・所属・経験年数のバランスを見て15組を編成します。同じ職場の方は別組になります。当日の朝、受付で組み合わせ表をお渡しします。</p></div>
-      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホール12を用いたハンディキャップ方式のため、平均スコア110前後の方にも優勝の可能性があります。初参加の方が上位に入るのは珍しくありません。</p></div>
-      <div class="pillar rise" data-d="2"><h3>表彰パーティーまでが本編</h3><p>プレー後は同じ会場で表彰パーティーを行います。全参加者に賞品が渡るよう飛び賞を設定し、席は組を崩して配置します。</p></div>
+      <div class="pillar rise"><h3>組み合わせは主催者が編成</h3><p>職種・所属・経験年数のバランスを見て4組を編成します。同じ職場の方は別組になります。当日の朝、受付で組み合わせ表をお渡しします。</p></div>
+      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホールを用いたハンディキャップ方式のため、平均スコア110前後の方にも上位入賞の可能性があります。初参加の方が上位に入るのは珍しくありません。</p></div>
+      <div class="pillar rise" data-d="2"><h3>表彰までが本編</h3><p>プレー後は表彰を行います。コンペ会費は賞品代等に充当し、全参加者に賞品が渡るよう飛び賞を設定します。</p></div>
     </div>
   </div>
 </section>
@@ -457,7 +533,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="rise">
       <p class="eyebrow">Tournament Outline</p>
       <h2 class="h2">開催概要</h2>
-      <p class="lede">参加費にはプレー費・昼食・表彰パーティー・賞品代を含みます。当日の追加のお支払いはキャディフィのみです。</p>
+      <p class="lede">参加費は当日集金です。プレー代とコンペ会費の合計 11,590円をお持ちください。コンペ会費は賞品代等に充当いたします。</p>
     </div>
 
     <div class="spec rise" data-d="1" style="margin-top:3.4rem">
@@ -467,19 +543,21 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       </div>
       <dl>
         <dt>開催日</dt>
-        <dd><b>2026年10月17日（土）</b><small>雨天決行。荒天中止の場合は前日18時までにメールでご連絡します。</small></dd>
+        <dd><b>2026年11月17日（火）</b><small>雨天決行。荒天中止の場合は前日18時までにメールでご連絡します。</small></dd>
         <dt>会場</dt>
-        <dd>東雲カントリークラブ 丘陵コース<small>大阪府南河内郡／阪和自動車道 美原北ICより約20分</small></dd>
+        <dd>東条の森カントリークラブ 宇城コース<small>〒673-1325 兵庫県加東市大畑1071-20／中国自動車道「吉川IC」より約9km</small></dd>
+        <dt>スタート</dt>
+        <dd>8:00 INコース<small>組時間：8:00 ／ 8:07 ／ 8:15 ／ 8:22（全4組）</small></dd>
         <dt>集合</dt>
-        <dd>7:00 受付開始 ／ 8:00 アウトインスタート<small>スタート30分前までにクラブハウスへお越しください。</small></dd>
+        <dd>7:30<small>チェックインはスタート30分前までにお済ませください。</small></dd>
         <dt>競技方法</dt>
-        <dd>18ホール ストロークプレー・新ペリア方式<small>隠しホール12。ローカルルールはスタート室掲示に準じます。</small></dd>
+        <dd>18ホール ストロークプレー・新ペリア方式<small>ローカルルールはスタート室掲示に準じます。</small></dd>
         <dt>参加費</dt>
-        <dd><b>22,000円</b>（税込）<small>プレー費・昼食・表彰パーティー・賞品代を含む。キャディフィは当日別途。</small></dd>
+        <dd><b>合計 11,590円</b>（当日集金）
+          <small>プレー代 7,590円 ＋ コンペ会費 4,000円。コンペ会費は賞品代等に充当いたします。</small>
+        </dd>
         <dt>定員</dt>
-        <dd>60名（15組）<small>定員に達し次第、締め切ります。キャンセル待ちを受け付けます。</small></dd>
-        <dt>申込締切</dt>
-        <dd>2026年9月30日（水）23:59<small>10月10日以降のキャンセルは参加費の50%を申し受けます。</small></dd>
+        <dd>16名（4組）<small>定員に達し次第、締め切ります。キャンセル待ちを受け付けます。</small></dd>
         <dt>服装</dt>
         <dd>コース規定に準じます<small>ジャケット着用でのご来場、シャツの裾はパンツ内へお入れください。</small></dd>
       </dl>
@@ -493,30 +571,25 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="rise">
       <p class="eyebrow">Card of the Day</p>
       <h2 class="h2">当日の流れ</h2>
-      <p class="lede">受付から解散まで、一日の進行をスコアカードの形でまとめました。時刻は目安です。進行状況により前後します。</p>
+      <p class="lede">集合からスタートまでの進行です。組時間は7分間隔です。チェックインは各組スタートの30分前までにお済ませください。</p>
     </div>
 
     <div class="card rise" data-d="1">
       <div class="card-top">
-        <b>Saturday, 17 October 2026</b>
-        <span>東雲カントリークラブ 丘陵コース</span>
+        <b>Tuesday, 17 November 2026</b>
+        <span>東条の森カントリークラブ 宇城コース</span>
       </div>
 
-      <div class="turn">Front Nine</div>
-      <div class="row"><span class="t">7:00</span><span class="n">受付<small>組み合わせ表・スコアカード・ロッカーキーをお渡しします</small></span><span class="p">クラブハウス</span></div>
-      <div class="row"><span class="t">7:40</span><span class="n">開会あいさつ・記念撮影<small>全体で5分程度。遅れた場合はスタート室へ直接お越しください</small></span><span class="p">プラクティスグリーン前</span></div>
-      <div class="row"><span class="t">8:00</span><span class="n">アウト・インスタート<small>1番／10番から同時スタート。カートはGPSナビ付き</small></span><span class="p">1番・10番ホール</span></div>
+      <div class="turn">Morning</div>
+      <div class="row"><span class="t">7:30</span><span class="n">集合・チェックイン<small>組み合わせ表・スコアカードをお渡しします。参加費は当日集金です</small></span><span class="p">クラブハウス</span></div>
+      <div class="row"><span class="t">8:00</span><span class="n">第1組スタート<small>INコースよりスタート</small></span><span class="p">IN スタート</span></div>
+      <div class="row"><span class="t">8:07</span><span class="n">第2組スタート</span><span class="p">IN スタート</span></div>
+      <div class="row"><span class="t">8:15</span><span class="n">第3組スタート</span><span class="p">IN スタート</span></div>
+      <div class="row"><span class="t">8:22</span><span class="n">第4組スタート<small>全4組・計16名</small></span><span class="p">IN スタート</span></div>
 
-      <div class="turn">Turn</div>
-      <div class="row"><span class="t">10:30</span><span class="n">昼食（約50分）<small>スタート時に注文票をお預かりします。3種から選択</small></span><span class="p">レストラン 芝</span></div>
-
-      <div class="turn">Back Nine</div>
-      <div class="row"><span class="t">11:20</span><span class="n">後半スタート</span><span class="p">10番・1番ホール</span></div>
-      <div class="row"><span class="t">15:30</span><span class="n">プレー終了・スコア提出<small>アテスト後、受付横の回収箱へご提出ください</small></span><span class="p">クラブハウス</span></div>
-
-      <div class="turn">19th Hole</div>
-      <div class="row"><span class="t">17:00</span><span class="n">表彰パーティー<small>席は組を崩して配置します。ジャケット着用</small></span><span class="p">宴会場 松風</span></div>
-      <div class="row"><span class="t">19:00</span><span class="n">解散<small>難波駅・天王寺駅への送迎バスを運行します（要事前予約）</small></span><span class="p">正面エントランス</span></div>
+      <div class="turn">After Play</div>
+      <div class="row"><span class="t">—</span><span class="n">プレー終了・スコア提出<small>アテスト後、受付へご提出ください</small></span><span class="p">クラブハウス</span></div>
+      <div class="row"><span class="t">—</span><span class="n">表彰<small>コンペ会費は賞品代等に充当します</small></span><span class="p">クラブハウス</span></div>
     </div>
   </div>
 </section>
@@ -574,9 +647,9 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 
     <div class="prize-sub rise" data-d="2">
       <div class="sub"><b>ベストグロス賞</b><span>グロススコア最少</span></div>
-      <div class="sub"><b>ドラコン賞</b><span>男性 4番 ／ 女性 12番</span></div>
-      <div class="sub"><b>ニアピン賞</b><span>3番・7番・13番・17番</span></div>
-      <div class="sub"><b>飛び賞</b><span>10位・20位・30位・40位・50位</span></div>
+      <div class="sub"><b>ドラコン賞</b><span>8番・18番</span></div>
+      <div class="sub"><b>ニアピン賞</b><span>6番・15番</span></div>
+      <div class="sub"><b>飛び賞</b><span>順位に応じて設定</span></div>
       <div class="sub"><b>ブービー賞</b><span>下位から2番目</span></div>
       <div class="sub"><b>初参加賞</b><span>初出場の方 全員</span></div>
     </div>
@@ -587,33 +660,58 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 <section class="band band--deep" id="venue">
   <div class="wrap">
     <div class="venue">
-      <div class="venue-visual rise" aria-hidden="true">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <g fill="none" stroke="#C8A34A">
-            <path d="M-20 210c60-30 120 10 180-10s140-50 250-20" stroke-width=".7" opacity=".28"/>
-            <path d="M-20 240c70-26 130 14 190-6s130-44 240-14" stroke-width=".7" opacity=".22"/>
-            <path d="M-20 180c50-34 120 6 170-16s150-40 260-10" stroke-width=".7" opacity=".2"/>
-            <ellipse cx="272" cy="110" rx="72" ry="42" stroke-width=".8" opacity=".3"/>
-            <ellipse cx="272" cy="110" rx="52" ry="30" stroke-width=".6" opacity=".24"/>
-            <ellipse cx="272" cy="110" rx="32" ry="18" stroke-width=".5" opacity=".18"/>
-            <path d="M20 268c40-70 60-120 110-150" stroke-width="1" opacity=".22"/>
-          </g>
-          <path d="M272 110V58" stroke="#EFDCA6" stroke-width="1.2" stroke-linecap="round"/>
-          <path d="M272 58l16 6-16 6.5V58z" fill="#C8A34A"/>
-          <circle cx="272" cy="110" r="2.6" fill="#EFDCA6"/>
-        </svg>
+      <div class="venue-visual rise">
+        <img src="images/08_01.jpg" alt="東条の森カントリークラブ 宇城コースのティーグラウンドからの眺め" width="800" height="600" loading="lazy">
       </div>
       <div class="rise" data-d="1">
         <p class="eyebrow">The Course</p>
-        <h2 class="h2">東雲カントリークラブ<br><em>丘陵コース</em></h2>
-        <p class="lede">南河内の丘陵地に広がる18ホール。フェアウェイは広く取られ、飛距離よりも second shot の判断が問われる設計です。グリーンは高麗と洋芝の2グリーン、当日は洋芝を使用します。</p>
-        <p class="lede">クラブハウスからは金剛山系を一望できます。レストランは河内鴨を使った名物メニューがあり、昼食はここから3種お選びいただきます。</p>
+        <h2 class="h2">東条の森カントリークラブ<br><em>宇城コース</em></h2>
+        <p class="lede">〒673-1325 兵庫県加東市大畑1071-20。中国自動車道「吉川IC」より約9km。丘陵のフラットな18ホールで、戦略的なレイアウトが魅力のコースです。</p>
+        <p class="lede">当日はINコースよりスタートします。組時間は 8:00／8:07／8:15／8:22 の全4組です。集合は7:30、チェックインはスタート30分前までにお済ませください。</p>
         <dl class="venue-stats">
           <div><dt>Par</dt><dd>72</dd></div>
-          <div><dt>Yards</dt><dd>6,412<i>Y</i></dd></div>
-          <div><dt>Access</dt><dd>20<i>分</i></dd></div>
+          <div><dt>Yards</dt><dd>6,512<i>Y</i></dd></div>
+          <div><dt>Access</dt><dd>9<i>km</i></dd></div>
         </dl>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ギャラリー ============ -->
+<section class="band" id="gallery">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Gallery</p>
+      <h2 class="h2">コースギャラリー</h2>
+      <p class="lede">開催会場・東条の森カントリークラブ 宇城コースの様子です。</p>
+    </div>
+
+    <div class="gallery-grid">
+      <figure class="g-item g-item--hero rise">
+        <img src="images/22_02.jpg.webp" alt="池越えのグリーンとフェアウェイ" width="1200" height="800" loading="lazy">
+        <figcaption>Green &amp; Water</figcaption>
+      </figure>
+      <figure class="g-item g-item--side rise" data-d="1">
+        <img src="images/08_02.jpg" alt="フェアウェイのストライプと樹林" width="800" height="600" loading="lazy">
+        <figcaption>Fairway</figcaption>
+      </figure>
+      <figure class="g-item g-item--side rise" data-d="2">
+        <img src="images/19_01.jpg.webp" alt="ティーからのホール全景" width="800" height="600" loading="lazy">
+        <figcaption>Tee View</figcaption>
+      </figure>
+      <figure class="g-item g-item--wide rise">
+        <img src="images/22_01.jpg" alt="開放的なティーグラウンド" width="800" height="600" loading="lazy">
+        <figcaption>Tee Box</figcaption>
+      </figure>
+      <figure class="g-item g-item--wide rise" data-d="1">
+        <img src="images/24_01.jpg" alt="カート道沿いのフェアウェイ" width="800" height="600" loading="lazy">
+        <figcaption>Approach</figcaption>
+      </figure>
+      <figure class="g-item g-item--wide rise" data-d="2">
+        <img src="images/08_01.jpg" alt="樹林に囲まれたホール" width="800" height="600" loading="lazy">
+        <figcaption>Tree Lined</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -631,7 +729,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <details><summary>医療関係者以外も参加できますか。</summary><p>参加者ご本人が医療・介護・ヘルスケア関連の業務に携わっていることを条件としています。製薬・医療機器・ヘルステック企業の方も対象です。ご同伴者の参加はお受けしていません。</p></details>
       <details><summary>クラブのレンタルはありますか。</summary><p>会場でレンタルクラブ（1セット 3,300円）とシューズ（1,100円）をご用意しています。エントリーフォームの備考欄にご記入ください。当日の受付では手配できかねます。</p></details>
       <details><summary>表彰パーティーだけの参加はできますか。</summary><p>プレーを伴わない参加はお受けしていません。当日の体調不良等でプレーを取りやめた場合は、パーティーからご合流いただけます。</p></details>
-      <details><summary>キャンセルはいつまで可能ですか。</summary><p>10月9日（金）までは無料でキャンセルできます。10月10日以降は参加費の50%、当日の連絡なしの不参加は全額を申し受けます。</p></details>
+      <details><summary>キャンセルはいつまで可能ですか。</summary><p>開催日の1週間前までは無料でキャンセルできます。それ以降、および当日の連絡なしの不参加については、別途ご案内する条件に従います。詳細は事務局までお問い合わせください。</p></details>
     </div>
   </div>
 </section>
@@ -650,13 +748,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
   <div class="wrap inner">
     <p class="eyebrow rise" style="justify-content:center">Entry</p>
-    <h2 class="rise" data-d="1">10月17日、<br>東雲でお会いしましょう。</h2>
-    <p class="deadline rise" data-d="2"><i class="dot"></i>申込締切 <b>2026年9月30日（水）</b>／ 残り 18 席</p>
+    <h2 class="rise" data-d="1">11月17日、<br>東条の森でお会いしましょう。</h2>
+    <p class="deadline rise" data-d="2"><i class="dot"></i>開催日 <b>2026年11月17日（火）</b>／ 定員 16名（4組）</p>
     <div class="hero-cta rise" data-d="2">
-      <a href="#" class="gold-btn">エントリーフォームへ</a>
-      <a href="#" class="ghost-btn">開催要項をダウンロード（PDF）</a>
+      <a href="#outline" class="gold-btn">開催概要を見る</a>
+      <a href="#news" class="ghost-btn">お知らせを見る</a>
     </div>
-    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">ご不明な点は事務局までお問い合わせください。<br>medical-golf-cup@example.jp ／ 平日 10:00–17:00</p>
+    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">参加費は当日集金（合計 11,590円）です。<br>ご不明な点は事務局までお問い合わせください。<br>medical-golf-cup@example.jp ／ 平日 10:00–17:00</p>
   </div>
 </section>
 
@@ -678,11 +776,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <div>
         <h4>Menu</h4>
         <ul>
+          <li><a href="#news">お知らせ</a></li>
           <li><a href="#about">大会について</a></li>
           <li><a href="#outline">開催概要</a></li>
           <li><a href="#schedule">当日の流れ</a></li>
           <li><a href="#prize">賞典</a></li>
           <li><a href="#venue">会場</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
           <li><a href="#faq">よくある質問</a></li>
           <li><a href="#entry">エントリー</a></li>
         </ul>
@@ -691,8 +791,8 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <h4>Information</h4>
         <dl>
           <dt>主催</dt><dd>メディカルゴルフ交流会</dd>
-          <dt>開催日</dt><dd>2026年10月17日（土）</dd>
-          <dt>会場</dt><dd>東雲カントリークラブ 丘陵コース<br>大阪府南河内郡</dd>
+          <dt>開催日</dt><dd>2026年11月17日（火）</dd>
+          <dt>会場</dt><dd>東条の森カントリークラブ 宇城コース<br>兵庫県加東市大畑1071-20</dd>
           <dt>事務局</dt><dd>medical-golf-cup@example.jp</dd>
         </dl>
       </div>
