@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEDICAL GOLF CUP 2026 ｜ 第3回 メディカルゴルフカップ</title>
-<meta name="description" content="医療・ヘルスケアに携わる方のための交流ゴルフコンペ「MEDICAL GOLF CUP 2026」。2026年11月17日（火）東条の森カントリークラブ 宇城コースにて開催。参加者募集中。">
+<title>おくすりカップ 2026</title>
+<meta name="description" content="おくすりカップ 2026。2026年11月17日（火）東条の森カントリークラブ 大蔵コースにて開催。参加者募集中。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -114,16 +114,23 @@ header.scrolled{
   border-bottom-color:var(--green-line);
 }
 .bar{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding-top:1.1rem;padding-bottom:1.1rem}
-.brand{display:flex;align-items:center;gap:.85rem}
+.brand{display:flex;align-items:center;gap:.85rem;min-width:0}
 .brand svg{width:34px;height:34px;flex:none}
-.brand b{font-family:var(--display);font-size:1.02rem;letter-spacing:.2em;font-weight:500;color:var(--gold-light)}
-.brand span{display:block;font-size:.6rem;letter-spacing:.24em;color:var(--ivory-faint);font-family:var(--sans)}
-nav{display:flex;align-items:center;gap:2rem}
-nav a{font-size:.79rem;letter-spacing:.1em;color:var(--ivory-dim);transition:.3s}
+.brand-text{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.brand b{
+  font-family:var(--jp);font-size:1.05rem;letter-spacing:.14em;font-weight:500;
+  color:var(--gold-light);white-space:nowrap;
+}
+.brand .brand-sub{display:block;font-size:.6rem;letter-spacing:.22em;color:var(--ivory-faint);font-family:var(--sans);white-space:nowrap}
+nav{display:flex;align-items:center;gap:clamp(.75rem,1.4vw,1.45rem);flex-wrap:nowrap}
+nav a{
+  font-size:.72rem;letter-spacing:.06em;color:var(--ivory-dim);transition:.3s;
+  white-space:nowrap;flex-shrink:0;
+}
 nav a:hover{color:var(--gold-light)}
 nav .entry{
   border:1px solid var(--gold);color:var(--gold-light);
-  padding:.62em 1.5em;border-radius:2px;
+  padding:.62em 1.25em;border-radius:2px;
 }
 nav .entry:hover{background:var(--gold);color:#10301F}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
@@ -301,53 +308,51 @@ section{position:relative}
 .venue-stats dd i{font-style:normal;font-size:.72rem;font-family:var(--sans);color:var(--ivory-faint);margin-left:.25em}
 .venue-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
-/* ---------- ギャラリー ---------- */
-.gallery-grid{
-  display:grid;gap:1px;background:var(--green-line);
-  border:1px solid var(--green-line);margin-top:3.4rem;
+/* ---------- ギャラリー（スライドショー） ---------- */
+.slideshow{
+  position:relative;margin-top:3.4rem;
+  border:1px solid var(--green-line);background:var(--ink);overflow:hidden;
+  aspect-ratio:16/9;
 }
-.g-item{
-  position:relative;overflow:hidden;background:var(--ink);
-  aspect-ratio:4/3;
+.slides{position:absolute;inset:0}
+.slide{
+  position:absolute;inset:0;opacity:0;visibility:hidden;
+  transition:opacity .9s ease,visibility .9s ease;
 }
-.g-item img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform 1.4s cubic-bezier(.2,.7,.3,1);
-}
-.g-item:hover img{transform:scale(1.045)}
-.g-item figcaption{
-  position:absolute;left:0;right:0;bottom:0;
-  padding:.85rem 1.1rem;
-  background:linear-gradient(transparent,rgba(7,25,15,.78));
-  font-family:var(--display);font-size:.68rem;letter-spacing:.22em;
+.slide.is-active{opacity:1;visibility:visible;z-index:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide figcaption{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:1.4rem clamp(1.2rem,3vw,2rem);
+  background:linear-gradient(transparent,rgba(7,25,15,.82));
+  font-family:var(--display);font-size:.72rem;letter-spacing:.28em;
   text-transform:uppercase;color:var(--gold-light);
 }
-@media(min-width:760px){
-  .gallery-grid{
-    grid-template-columns:repeat(6,1fr);
-    grid-auto-rows:minmax(140px,18vw);
-  }
-  .g-item--hero{grid-column:span 4;grid-row:span 2;aspect-ratio:auto}
-  .g-item--side{grid-column:span 2;aspect-ratio:auto}
-  .g-item--wide{grid-column:span 2;aspect-ratio:auto}
+.slide-btn{
+  position:absolute;top:50%;z-index:3;transform:translateY(-50%);
+  width:44px;height:44px;border:1px solid var(--green-line);
+  background:rgba(7,25,15,.55);color:var(--gold-light);cursor:pointer;
+  font-size:1.2rem;line-height:1;backdrop-filter:blur(6px);
+  transition:border-color .3s,background .3s;
 }
-
-/* ---------- FAQ ---------- */
-.faq{margin-top:3rem;border-top:1px solid rgba(18,59,39,.14)}
-.faq details{border-bottom:1px solid rgba(18,59,39,.14)}
-.faq summary{
-  list-style:none;cursor:pointer;padding:1.5rem 2.5rem 1.5rem 0;position:relative;
-  font-family:var(--jp);font-size:1rem;letter-spacing:.04em;transition:color .3s;
+.slide-btn:hover{border-color:var(--gold);background:rgba(7,25,15,.8)}
+.slide-btn--prev{left:1rem}
+.slide-btn--next{right:1rem}
+.slide-dots{
+  position:absolute;left:50%;bottom:1rem;z-index:3;transform:translateX(-50%);
+  display:flex;gap:.55rem;
 }
-.faq summary::-webkit-details-marker{display:none}
-.faq summary:hover{color:var(--gold-deep)}
-.faq summary::after{
-  content:"";position:absolute;right:.4rem;top:50%;width:11px;height:11px;
-  border-right:1px solid var(--gold-deep);border-bottom:1px solid var(--gold-deep);
-  transform:translateY(-70%) rotate(45deg);transition:.35s;
+.slide-dots button{
+  width:7px;height:7px;border-radius:50%;border:0;padding:0;cursor:pointer;
+  background:rgba(237,239,230,.35);transition:background .3s,transform .3s;
 }
-.faq details[open] summary::after{transform:translateY(-20%) rotate(-135deg)}
-.faq p{padding:0 0 1.7rem;font-size:.89rem;color:rgba(18,59,39,.74);max-width:52em}
+.slide-dots button.is-active{background:var(--gold);transform:scale(1.25)}
+@media(max-width:640px){
+  .slideshow{aspect-ratio:4/3}
+  .slide-btn{width:38px;height:38px}
+  .slide-btn--prev{left:.55rem}
+  .slide-btn--next{right:.55rem}
+}
 
 /* ---------- エントリー ---------- */
 .entry-band{position:relative;background:var(--ink);overflow:hidden;text-align:center}
@@ -410,9 +415,9 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <path d="M17 11l8 3-8 3.2V11z" fill="#C8A34A"/>
         <path d="M13 29h9" stroke="#EFDCA6" stroke-width=".8" stroke-linecap="round"/>
       </svg>
-      <span>
-        <b>MEDICAL GOLF CUP</b>
-        <span>第3回 メディカルゴルフカップ 2026</span>
+      <span class="brand-text">
+        <b>おくすりカップ</b>
+        <span class="brand-sub">2026</span>
       </span>
     </a>
     <nav id="nav">
@@ -423,7 +428,6 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <a href="#prize">賞典</a>
       <a href="#venue">会場</a>
       <a href="#gallery">ギャラリー</a>
-      <a href="#faq">よくある質問</a>
       <a href="#entry" class="entry">エントリー</a>
     </nav>
     <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
@@ -469,7 +473,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 
     <dl class="meta rise" data-d="2">
       <div><dt>Date</dt><dd>2026.11.17（火）</dd></div>
-      <div><dt>Venue</dt><dd>東条の森カントリークラブ</dd></div>
+      <div><dt>Venue</dt><dd>大蔵コース</dd></div>
       <div><dt>Start</dt><dd>8:00 INスタート</dd></div>
       <div><dt>Field</dt><dd>16名（4組）</dd></div>
     </dl>
@@ -496,7 +500,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
           <time datetime="2026-07-24">2026.07.24</time>
           <span class="ttl">
             ゴルフコンペ開催のご案内｜参加者募集中
-            <small>2026年11月17日（火）／東条の森カントリークラブ 宇城コース</small>
+            <small>2026年11月17日（火）／東条の森カントリークラブ 大蔵コース</small>
           </span>
           <span class="more">詳細を見る →</span>
         </a>
@@ -538,14 +542,14 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 
     <div class="spec rise" data-d="1" style="margin-top:3.4rem">
       <div class="spec-head">
-        <b>Medical Golf Cup 2026</b>
-        <small>第3回大会 ／ 主催：メディカルゴルフ交流会</small>
+        <b>Okusuri Cup 2026</b>
+        <small>おくすりカップ ／ 主催：メディカルゴルフ交流会</small>
       </div>
       <dl>
         <dt>開催日</dt>
         <dd><b>2026年11月17日（火）</b><small>雨天決行。荒天中止の場合は前日18時までにメールでご連絡します。</small></dd>
         <dt>会場</dt>
-        <dd>東条の森カントリークラブ 宇城コース<small>〒673-1325 兵庫県加東市大畑1071-20／中国自動車道「吉川IC」より約9km</small></dd>
+        <dd>東条の森カントリークラブ 大蔵コース<small>〒673-1325 兵庫県加東市大畑1071-7-2／中国自動車道「ひょうご東条IC」より約7km</small></dd>
         <dt>スタート</dt>
         <dd>8:00 INコース<small>組時間：8:00 ／ 8:07 ／ 8:15 ／ 8:22（全4組）</small></dd>
         <dt>集合</dt>
@@ -577,7 +581,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="card rise" data-d="1">
       <div class="card-top">
         <b>Tuesday, 17 November 2026</b>
-        <span>東条の森カントリークラブ 宇城コース</span>
+        <span>東条の森カントリークラブ 大蔵コース</span>
       </div>
 
       <div class="turn">Morning</div>
@@ -647,8 +651,8 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 
     <div class="prize-sub rise" data-d="2">
       <div class="sub"><b>ベストグロス賞</b><span>グロススコア最少</span></div>
-      <div class="sub"><b>ドラコン賞</b><span>8番・18番</span></div>
-      <div class="sub"><b>ニアピン賞</b><span>6番・15番</span></div>
+      <div class="sub"><b>ドラコン賞</b><span>東4番・西6番・南8番</span></div>
+      <div class="sub"><b>ニアピン賞</b><span>東7番・西5番・南4番</span></div>
       <div class="sub"><b>飛び賞</b><span>順位に応じて設定</span></div>
       <div class="sub"><b>ブービー賞</b><span>下位から2番目</span></div>
       <div class="sub"><b>初参加賞</b><span>初出場の方 全員</span></div>
@@ -661,17 +665,17 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   <div class="wrap">
     <div class="venue">
       <div class="venue-visual rise">
-        <img src="images/08_01.jpg" alt="東条の森カントリークラブ 宇城コースのティーグラウンドからの眺め" width="800" height="600" loading="lazy">
+        <img src="images/08_01.jpg" alt="東条の森カントリークラブ 大蔵コースのティーグラウンドからの眺め" width="800" height="600" loading="lazy">
       </div>
       <div class="rise" data-d="1">
         <p class="eyebrow">The Course</p>
-        <h2 class="h2">東条の森カントリークラブ<br><em>宇城コース</em></h2>
-        <p class="lede">〒673-1325 兵庫県加東市大畑1071-20。中国自動車道「吉川IC」より約9km。丘陵のフラットな18ホールで、戦略的なレイアウトが魅力のコースです。</p>
+        <h2 class="h2">東条の森カントリークラブ<br><em>大蔵コース</em></h2>
+        <p class="lede">〒673-1325 兵庫県加東市大畑1071-7-2。中国自動車道「ひょうご東条IC」より約7km。樹木と池が巧みに配された27ホールズの丘陵コースです。</p>
         <p class="lede">当日はINコースよりスタートします。組時間は 8:00／8:07／8:15／8:22 の全4組です。集合は7:30、チェックインはスタート30分前までにお済ませください。</p>
         <dl class="venue-stats">
           <div><dt>Par</dt><dd>72</dd></div>
-          <div><dt>Yards</dt><dd>6,512<i>Y</i></dd></div>
-          <div><dt>Access</dt><dd>9<i>km</i></dd></div>
+          <div><dt>Yards</dt><dd>6,500<i>Y</i></dd></div>
+          <div><dt>Holes</dt><dd>27</dd></div>
         </dl>
       </div>
     </div>
@@ -684,52 +688,39 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="rise">
       <p class="eyebrow">Gallery</p>
       <h2 class="h2">コースギャラリー</h2>
-      <p class="lede">開催会場・東条の森カントリークラブ 宇城コースの様子です。</p>
+      <p class="lede">開催会場・東条の森カントリークラブ 大蔵コースの様子です。</p>
     </div>
 
-    <div class="gallery-grid">
-      <figure class="g-item g-item--hero rise">
-        <img src="images/22_02.jpg.webp" alt="池越えのグリーンとフェアウェイ" width="1200" height="800" loading="lazy">
-        <figcaption>Green &amp; Water</figcaption>
-      </figure>
-      <figure class="g-item g-item--side rise" data-d="1">
-        <img src="images/08_02.jpg" alt="フェアウェイのストライプと樹林" width="800" height="600" loading="lazy">
-        <figcaption>Fairway</figcaption>
-      </figure>
-      <figure class="g-item g-item--side rise" data-d="2">
-        <img src="images/19_01.jpg.webp" alt="ティーからのホール全景" width="800" height="600" loading="lazy">
-        <figcaption>Tee View</figcaption>
-      </figure>
-      <figure class="g-item g-item--wide rise">
-        <img src="images/22_01.jpg" alt="開放的なティーグラウンド" width="800" height="600" loading="lazy">
-        <figcaption>Tee Box</figcaption>
-      </figure>
-      <figure class="g-item g-item--wide rise" data-d="1">
-        <img src="images/24_01.jpg" alt="カート道沿いのフェアウェイ" width="800" height="600" loading="lazy">
-        <figcaption>Approach</figcaption>
-      </figure>
-      <figure class="g-item g-item--wide rise" data-d="2">
-        <img src="images/08_01.jpg" alt="樹林に囲まれたホール" width="800" height="600" loading="lazy">
-        <figcaption>Tree Lined</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="band band--light" id="faq">
-  <div class="wrap">
-    <div class="rise">
-      <p class="eyebrow">Questions</p>
-      <h2 class="h2">よくある質問</h2>
-    </div>
-    <div class="faq rise" data-d="1">
-      <details open><summary>ゴルフを始めたばかりですが、参加できますか。</summary><p>参加いただけます。前回大会は参加者の46%が競技歴3年未満でした。新ペリア方式のため平均スコアに関わらず上位入賞の可能性があります。ハーフ70打を超える場合はピックアップをお願いすることがあります。</p></details>
-      <details><summary>一人での申し込みでも大丈夫ですか。</summary><p>一人でのお申し込みが最も多く、全体の6割を占めます。組み合わせは主催者が編成しますので、同伴者の手配は不要です。</p></details>
-      <details><summary>医療関係者以外も参加できますか。</summary><p>参加者ご本人が医療・介護・ヘルスケア関連の業務に携わっていることを条件としています。製薬・医療機器・ヘルステック企業の方も対象です。ご同伴者の参加はお受けしていません。</p></details>
-      <details><summary>クラブのレンタルはありますか。</summary><p>会場でレンタルクラブ（1セット 3,300円）とシューズ（1,100円）をご用意しています。エントリーフォームの備考欄にご記入ください。当日の受付では手配できかねます。</p></details>
-      <details><summary>表彰パーティーだけの参加はできますか。</summary><p>プレーを伴わない参加はお受けしていません。当日の体調不良等でプレーを取りやめた場合は、パーティーからご合流いただけます。</p></details>
-      <details><summary>キャンセルはいつまで可能ですか。</summary><p>開催日の1週間前までは無料でキャンセルできます。それ以降、および当日の連絡なしの不参加については、別途ご案内する条件に従います。詳細は事務局までお問い合わせください。</p></details>
+    <div class="slideshow rise" data-d="1" id="slideshow" aria-roledescription="carousel" aria-label="コース写真スライドショー">
+      <div class="slides">
+        <figure class="slide is-active">
+          <img src="images/22_02.jpg.webp" alt="池越えのグリーンとフェアウェイ" width="1200" height="675">
+          <figcaption>Green &amp; Water</figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="images/08_02.jpg" alt="フェアウェイのストライプと樹林" width="1200" height="675" loading="lazy">
+          <figcaption>Fairway</figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="images/19_01.jpg.webp" alt="ティーからのホール全景" width="1200" height="675" loading="lazy">
+          <figcaption>Tee View</figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="images/22_01.jpg" alt="開放的なティーグラウンド" width="1200" height="675" loading="lazy">
+          <figcaption>Tee Box</figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="images/24_01.jpg" alt="カート道沿いのフェアウェイ" width="1200" height="675" loading="lazy">
+          <figcaption>Approach</figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="images/08_01.jpg" alt="樹林に囲まれたホール" width="1200" height="675" loading="lazy">
+          <figcaption>Tree Lined</figcaption>
+        </figure>
+      </div>
+      <button type="button" class="slide-btn slide-btn--prev" aria-label="前の写真">‹</button>
+      <button type="button" class="slide-btn slide-btn--next" aria-label="次の写真">›</button>
+      <div class="slide-dots" role="tablist" aria-label="スライド選択"></div>
     </div>
   </div>
 </section>
@@ -748,7 +739,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
   <div class="wrap inner">
     <p class="eyebrow rise" style="justify-content:center">Entry</p>
-    <h2 class="rise" data-d="1">11月17日、<br>東条の森でお会いしましょう。</h2>
+    <h2 class="rise" data-d="1">11月17日、<br>おくすりカップでお会いしましょう。</h2>
     <p class="deadline rise" data-d="2"><i class="dot"></i>開催日 <b>2026年11月17日（火）</b>／ 定員 16名（4組）</p>
     <div class="hero-cta rise" data-d="2">
       <a href="#outline" class="gold-btn">開催概要を見る</a>
@@ -769,9 +760,9 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
             <path d="M17 11v18" stroke="#C8A34A" stroke-width="1.1" stroke-linecap="round"/>
             <path d="M17 11l8 3-8 3.2V11z" fill="#C8A34A"/>
           </svg>
-          <span><b>MEDICAL GOLF CUP</b><span>第3回大会 2026</span></span>
+          <span class="brand-text"><b>おくすりカップ</b><span class="brand-sub">2026</span></span>
         </a>
-        <p>医療・介護・ヘルスケアに携わる方の交流を目的としたゴルフコンペです。2024年より年1回開催しています。</p>
+        <p>医療・介護・ヘルスケアに携わる方の交流を目的としたゴルフコンペ「おくすりカップ」です。</p>
       </div>
       <div>
         <h4>Menu</h4>
@@ -783,7 +774,6 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
           <li><a href="#prize">賞典</a></li>
           <li><a href="#venue">会場</a></li>
           <li><a href="#gallery">ギャラリー</a></li>
-          <li><a href="#faq">よくある質問</a></li>
           <li><a href="#entry">エントリー</a></li>
         </ul>
       </div>
@@ -792,12 +782,12 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <dl>
           <dt>主催</dt><dd>メディカルゴルフ交流会</dd>
           <dt>開催日</dt><dd>2026年11月17日（火）</dd>
-          <dt>会場</dt><dd>東条の森カントリークラブ 宇城コース<br>兵庫県加東市大畑1071-20</dd>
+          <dt>会場</dt><dd>東条の森カントリークラブ 大蔵コース<br>兵庫県加東市大畑1071-7-2</dd>
           <dt>事務局</dt><dd>medical-golf-cup@example.jp</dd>
         </dl>
       </div>
     </div>
-    <p class="copy">© 2026 Medical Golf Cup. All Rights Reserved.</p>
+    <p class="copy">© 2026 おくすりカップ. All Rights Reserved.</p>
   </div>
 </footer>
 
@@ -830,9 +820,52 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
   items.forEach(el => io.observe(el));
-  // ヒーローは即時表示
   document.querySelectorAll('.hero .rise').forEach((el,i) => setTimeout(() => el.classList.add('in'), 120 + i*110));
 }
+
+// ギャラリー スライドショー
+(() => {
+  const root = document.getElementById('slideshow');
+  if (!root) return;
+  const slides = [...root.querySelectorAll('.slide')];
+  const dotsWrap = root.querySelector('.slide-dots');
+  const prevBtn = root.querySelector('.slide-btn--prev');
+  const nextBtn = root.querySelector('.slide-btn--next');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0;
+  let timer;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `${i + 1}枚目を表示`);
+    dot.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = [...dotsWrap.querySelectorAll('button')];
+
+  const render = () => {
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+  };
+  const go = (i) => {
+    index = (i + slides.length) % slides.length;
+    render();
+    restart();
+  };
+  const restart = () => {
+    clearInterval(timer);
+    if (reduceMotion) return;
+    timer = setInterval(() => go(index + 1), 5000);
+  };
+
+  prevBtn.addEventListener('click', () => go(index - 1));
+  nextBtn.addEventListener('click', () => go(index + 1));
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', restart);
+  render();
+  restart();
+})();
 </script>
 </body>
 </html>
