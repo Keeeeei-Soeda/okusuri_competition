@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>おくすりカップ 2026</title>
-<meta name="description" content="おくすりカップ 2026。2026年11月17日（火）東条の森カントリークラブ 大蔵コースにて開催。参加者募集中。">
+<title>おくすりコンペ 2026</title>
+<meta name="description" content="おくすりコンペ 2026。2026年11月17日（火）東条の森カントリークラブ 大蔵コースにて開催。参加者募集中。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -115,7 +115,7 @@ header.scrolled{
 }
 .bar{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding-top:1.1rem;padding-bottom:1.1rem}
 .brand{display:flex;align-items:center;gap:.85rem;min-width:0}
-.brand svg{width:34px;height:34px;flex:none}
+.brand img{width:40px;height:40px;flex:none;border-radius:50%}
 .brand-text{display:flex;flex-direction:column;gap:.15rem;min-width:0}
 .brand b{
   font-family:var(--jp);font-size:1.05rem;letter-spacing:.14em;font-weight:500;
@@ -146,8 +146,8 @@ nav .entry:hover{background:var(--gold);color:#10301F}
 }
 .hero-inner{position:relative;z-index:2;width:100%;text-align:center;padding:11rem 0 7rem}
 
-.crest{width:104px;height:104px;margin:0 auto 2.4rem}
-.crest svg{width:100%;height:100%}
+.crest{width:clamp(140px,22vw,200px);height:auto;margin:0 auto 2.4rem}
+.crest img{width:100%;height:auto}
 
 .hero .kicker{
   font-family:var(--display);font-size:.8rem;letter-spacing:.48em;
@@ -288,7 +288,12 @@ section{position:relative}
 .prize--first{background:linear-gradient(175deg,rgba(200,163,74,.14),transparent 62%),var(--ink)}
 .prize--first h3{color:var(--gold-light);font-size:1.42rem}
 .prize--first .rank{color:var(--gold)}
-@media(min-width:760px){.prize-main{grid-template-columns:1fr 1.25fr 1fr;align-items:stretch}}
+@media(min-width:760px){
+  .prize-main{grid-template-columns:1fr 1.25fr 1fr;align-items:stretch}
+  .prize--first{order:2}
+  .prize--second{order:1}
+  .prize--third{order:3}
+}
 
 .prize-sub{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);border-top:0;margin-bottom:0}
 .sub{background:var(--ink);padding:1.4rem clamp(1.1rem,2.5vw,1.6rem);display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
@@ -408,15 +413,9 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 <header id="hd">
   <div class="wrap bar">
     <a href="#top" class="brand">
-      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <circle cx="20" cy="20" r="18.5" stroke="#C8A34A" stroke-width="1"/>
-        <circle cx="20" cy="20" r="14" stroke="#C8A34A" stroke-width=".5" opacity=".5"/>
-        <path d="M17 11v18" stroke="#C8A34A" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M17 11l8 3-8 3.2V11z" fill="#C8A34A"/>
-        <path d="M13 29h9" stroke="#EFDCA6" stroke-width=".8" stroke-linecap="round"/>
-      </svg>
+      <img src="images/logo.png" alt="" width="40" height="40">
       <span class="brand-text">
-        <b>おくすりカップ</b>
+        <b>おくすりコンペ</b>
         <span class="brand-sub">2026</span>
       </span>
     </a>
@@ -456,26 +455,18 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 
   <div class="wrap hero-inner">
     <div class="crest rise" data-d="0">
-      <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
-        <circle cx="60" cy="60" r="57" stroke="#C8A34A" stroke-width=".9"/>
-        <circle cx="60" cy="60" r="50" stroke="#C8A34A" stroke-width=".5" opacity=".45"/>
-        <path d="M60 22v52" stroke="#EFDCA6" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M60 22l20 7.5-20 8V22z" fill="#C8A34A"/>
-        <circle cx="60" cy="80" r="4.2" fill="#EFDCA6"/>
-        <path d="M38 92c6 4 14 6 22 6s16-2 22-6" stroke="#C8A34A" stroke-width=".9" stroke-linecap="round"/>
-        <text x="60" y="110" text-anchor="middle" fill="#C8A34A" font-family="Cormorant Garamond,serif" font-size="9" letter-spacing="3">2026</text>
-      </svg>
+      <img src="images/logo.png" alt="おくすりコンペ" width="200" height="200">
     </div>
 
     <p class="kicker rise" data-d="1">Invitational Golf Tournament</p>
     <h1 class="rise" data-d="1">その一打が、<br><span class="g">次の縁になる。</span></h1>
-    <p class="sub rise" data-d="2">医療・介護・ヘルスケアに携わる方が、職種や立場を越えて一日をともにする交流コンペです。スコアの巧拙は問いません。初参加の方が半数を占めます。</p>
+    <p class="sub rise" data-d="2">普段は交流する機会のない方々が、職種や立場を超えて一日を共に過ごすコンペです。スコアの巧拙は問いません。ぜひ楽しくプレーを楽しみましょう！</p>
 
     <dl class="meta rise" data-d="2">
       <div><dt>Date</dt><dd>2026.11.17（火）</dd></div>
       <div><dt>Venue</dt><dd>大蔵コース</dd></div>
       <div><dt>Start</dt><dd>8:00 INスタート</dd></div>
-      <div><dt>Field</dt><dd>16名（4組）</dd></div>
+      <div><dt>Field</dt><dd>12名〜16名（4組）</dd></div>
     </dl>
 
     <div class="hero-cta rise" data-d="3">
@@ -518,14 +509,15 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <h2 class="h2">競うためではなく、<br><em>出会うために回る</em>一日。</h2>
       </div>
       <div class="rise" data-d="1">
-        <p class="lede">医療の現場は、職種ごとに世界が分かれがちです。医師と薬剤師、病院と施設、経営と現場。同じ患者を見ていても、話す機会はそう多くありません。</p>
-        <p class="lede">このコンペは、その線を一日だけ引き直す場です。組み合わせは主催者が編成し、同じ職種が同組にならないよう配慮します。4時間半を並んで歩けば、名刺交換では届かないところまで話が進みます。</p>
+        <p class="lede">普段生活をしているとついつい同じコミュニティに固まりがち。毎日会う同僚、毎日会うメンバー、毎日通う場所。</p>
+        <p class="lede">この「おくすりコンペ」では、そんな日常に「くすり」でちょっとだけ彩りが加わる、そんな一日になるかも？</p>
+        <p class="lede">ぜひ一緒にコースを歩いて交流を深めましょう！「素敵な縁」ができますように。</p>
       </div>
     </div>
 
     <div class="pillars">
-      <div class="pillar rise"><h3>組み合わせは主催者が編成</h3><p>職種・所属・経験年数のバランスを見て4組を編成します。同じ職場の方は別組になります。当日の朝、受付で組み合わせ表をお渡しします。</p></div>
-      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホールを用いたハンディキャップ方式のため、平均スコア110前後の方にも上位入賞の可能性があります。初参加の方が上位に入るのは珍しくありません。</p></div>
+      <div class="pillar rise"><h3>組み合わせは主催者が編成</h3><p>職種・所属・経験年数のバランスを見て4組を編成します。事前にラインでお知らせします！</p></div>
+      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホールを用いたハンディキャップ方式で、平均スコア110前後の方にも上位入賞の可能性があります。初参加の方が上位に入るのは珍しくありません。</p></div>
       <div class="pillar rise" data-d="2"><h3>表彰までが本編</h3><p>プレー後は表彰を行います。コンペ会費は賞品代等に充当し、全参加者に賞品が渡るよう飛び賞を設定します。</p></div>
     </div>
   </div>
@@ -537,13 +529,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="rise">
       <p class="eyebrow">Tournament Outline</p>
       <h2 class="h2">開催概要</h2>
-      <p class="lede">参加費は当日集金です。プレー代とコンペ会費の合計 11,590円をお持ちください。コンペ会費は賞品代等に充当いたします。</p>
+      <p class="lede">参加費は当日集金です。コンペ会費4,000円をお持ちください。コンペ会費は賞品代等に充当いたします。</p>
     </div>
 
     <div class="spec rise" data-d="1" style="margin-top:3.4rem">
       <div class="spec-head">
-        <b>Okusuri Cup 2026</b>
-        <small>おくすりカップ ／ 主催：メディカルゴルフ交流会</small>
+        <b>おくすりコンペ</b>
+        <small>Okusuri Competition</small>
       </div>
       <dl>
         <dt>開催日</dt>
@@ -557,7 +549,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <dt>競技方法</dt>
         <dd>18ホール ストロークプレー・新ペリア方式<small>ローカルルールはスタート室掲示に準じます。</small></dd>
         <dt>参加費</dt>
-        <dd><b>合計 11,590円</b>（当日集金）
+        <dd><b>合計 11,590円</b>
           <small>プレー代 7,590円 ＋ コンペ会費 4,000円。コンペ会費は賞品代等に充当いたします。</small>
         </dd>
         <dt>定員</dt>
@@ -604,23 +596,11 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="rise">
       <p class="eyebrow">Prizes</p>
       <h2 class="h2">賞典</h2>
-      <p class="lede">上位入賞に加え、飛び賞を10位刻みで設定しています。参加者全員に賞品が渡ります。</p>
+      <p class="lede">上位入賞に加え、参加者全員に景品が渡るようにいたします。</p>
+      <p class="lede">何がもらえるかはお楽しみ？？</p>
     </div>
 
     <div class="prize-main rise" data-d="1">
-      <div class="prize">
-        <p class="rank">Runner-up</p>
-        <div class="medal">
-          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
-            <circle cx="30" cy="34" r="17" stroke="#C8A34A" stroke-width="1" opacity=".7"/>
-            <path d="M22 10l8 12 8-12" stroke="#C8A34A" stroke-width="1" opacity=".7"/>
-            <text x="30" y="39" text-anchor="middle" fill="#C8A34A" font-family="Cormorant Garamond,serif" font-size="15" opacity=".8">2</text>
-          </svg>
-        </div>
-        <h3>準優勝</h3>
-        <p>トロフィー／ゴルフ場利用券 1万円分</p>
-      </div>
-
       <div class="prize prize--first">
         <p class="rank">Champion</p>
         <div class="medal">
@@ -632,10 +612,22 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
           </svg>
         </div>
         <h3>優勝</h3>
-        <p>優勝カップ（持ち回り）／副賞：次回大会 参加費無料<br>受賞者は次回大会の始球式にご登壇いただきます</p>
+        <p>優勝カップあり（次回持ってきてね）<br>次回大会の始球式にもご登壇いただきます</p>
       </div>
 
-      <div class="prize">
+      <div class="prize prize--second">
+        <p class="rank">Runner-up</p>
+        <div class="medal">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="34" r="17" stroke="#C8A34A" stroke-width="1" opacity=".7"/>
+            <path d="M22 10l8 12 8-12" stroke="#C8A34A" stroke-width="1" opacity=".7"/>
+            <text x="30" y="39" text-anchor="middle" fill="#C8A34A" font-family="Cormorant Garamond,serif" font-size="15" opacity=".8">2</text>
+          </svg>
+        </div>
+        <h3>準優勝</h3>
+      </div>
+
+      <div class="prize prize--third">
         <p class="rank">Third place</p>
         <div class="medal">
           <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
@@ -645,17 +637,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
           </svg>
         </div>
         <h3>第3位</h3>
-        <p>トロフィー／ゴルフ場利用券 5千円分</p>
       </div>
     </div>
 
     <div class="prize-sub rise" data-d="2">
-      <div class="sub"><b>ベストグロス賞</b><span>グロススコア最少</span></div>
-      <div class="sub"><b>ドラコン賞</b><span>東4番・西6番・南8番</span></div>
-      <div class="sub"><b>ニアピン賞</b><span>東7番・西5番・南4番</span></div>
-      <div class="sub"><b>飛び賞</b><span>順位に応じて設定</span></div>
-      <div class="sub"><b>ブービー賞</b><span>下位から2番目</span></div>
-      <div class="sub"><b>初参加賞</b><span>初出場の方 全員</span></div>
+      <div class="sub"><b>ドラコン賞</b><span>賞品は当日発表</span></div>
+      <div class="sub"><b>ニアピン賞</b><span>賞品は当日発表</span></div>
+      <div class="sub"><b>その他の賞</b><span>新しい賞が生まれるかも？</span></div>
     </div>
   </div>
 </section>
@@ -739,7 +727,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
   <div class="wrap inner">
     <p class="eyebrow rise" style="justify-content:center">Entry</p>
-    <h2 class="rise" data-d="1">11月17日、<br>おくすりカップでお会いしましょう。</h2>
+    <h2 class="rise" data-d="1">11月17日、<br>おくすりコンペでお会いしましょう。</h2>
     <p class="deadline rise" data-d="2"><i class="dot"></i>開催日 <b>2026年11月17日（火）</b>／ 定員 16名（4組）</p>
     <div class="hero-cta rise" data-d="2">
       <a href="#outline" class="gold-btn">開催概要を見る</a>
@@ -755,14 +743,10 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="foot-grid">
       <div>
         <a href="#top" class="brand" style="margin-bottom:1.2rem">
-          <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <circle cx="20" cy="20" r="18.5" stroke="#C8A34A" stroke-width="1"/>
-            <path d="M17 11v18" stroke="#C8A34A" stroke-width="1.1" stroke-linecap="round"/>
-            <path d="M17 11l8 3-8 3.2V11z" fill="#C8A34A"/>
-          </svg>
-          <span class="brand-text"><b>おくすりカップ</b><span class="brand-sub">2026</span></span>
+          <img src="images/logo.png" alt="" width="40" height="40">
+          <span class="brand-text"><b>おくすりコンペ</b><span class="brand-sub">2026</span></span>
         </a>
-        <p>医療・介護・ヘルスケアに携わる方の交流を目的としたゴルフコンペ「おくすりカップ」です。</p>
+        <p>医療・介護・ヘルスケアに携わる方の交流を目的としたゴルフコンペ「おくすりコンペ」です。</p>
       </div>
       <div>
         <h4>Menu</h4>
@@ -787,7 +771,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         </dl>
       </div>
     </div>
-    <p class="copy">© 2026 おくすりカップ. All Rights Reserved.</p>
+    <p class="copy">© 2026 おくすりコンペ. All Rights Reserved.</p>
   </div>
 </footer>
 
