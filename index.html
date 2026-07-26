@@ -125,7 +125,7 @@ img{max-width:100%;display:block}
 
 /* ---------- ヘッダー ---------- */
 header{
-  position:fixed;top:0;left:0;right:0;z-index:60;
+  position:fixed;top:0;left:0;right:0;z-index:80;
   transition:.5s ease;
   border-bottom:1px solid transparent;
 }
@@ -153,17 +153,31 @@ nav .entry{
   padding:.62em 1.25em;border-radius:2px;
 }
 nav .entry:hover{background:var(--gold);color:#10301F}
-.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;position:relative;z-index:80}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;position:relative;z-index:81}
 .burger span{display:block;width:26px;height:1px;background:var(--gold-light);margin:6px 0;transition:.35s;transform-origin:center}
 .burger.is-open span:first-child{transform:translateY(7px) rotate(45deg)}
 .burger.is-open span:last-child{transform:translateY(-7px) rotate(-45deg)}
+/* モバイル用：transform を持たない固定レイヤー（スクロール後のずれ防止） */
+.nav-layer{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:70;
+  pointer-events:none;
+}
+.nav-layer.is-open{pointer-events:auto}
 .nav-backdrop{
-  position:fixed;inset:0;z-index:65;
+  position:absolute;inset:0;
   background:rgba(7,25,15,.55);
   opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .35s ease,visibility .35s ease;
 }
 .nav-backdrop.show{opacity:1;visibility:visible;pointer-events:auto}
+html.nav-lock,
+html.nav-lock body{
+  overflow:hidden;
+  overscroll-behavior:none;
+}
 
 /* ---------- ヒーロー ---------- */
 .hero{
@@ -495,13 +509,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 @media(max-width:900px){
   .about-grid{grid-template-columns:1fr}
   .burger{display:block}
+  .nav-layer{display:block}
   nav{
-    position:fixed;
+    position:absolute;
     top:0;right:0;bottom:0;
     width:min(82vw,320px);
-    height:100dvh;
-    max-height:100dvh;
-    z-index:70;
+    height:auto;
+    max-height:none;
     background:rgba(7,25,15,.98);
     flex-direction:column;
     flex-wrap:nowrap;
@@ -516,6 +530,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     overscroll-behavior:contain;
     transform:translateX(100%);
     transition:transform .45s cubic-bezier(.2,.7,.3,1);
+    pointer-events:auto;
   }
   nav.open{transform:none}
   nav a{font-size:.95rem;flex-shrink:0}
@@ -541,13 +556,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       </span>
     </a>
     <nav id="nav" aria-label="サイトメニュー">
-      <a href="#news">お知らせ</a>
       <a href="#about">大会について</a>
       <a href="#outline">開催概要</a>
       <a href="#schedule">当日の流れ</a>
       <a href="#prize">賞典</a>
       <a href="#venue">会場</a>
       <a href="#gallery">ギャラリー</a>
+      <a href="#news">お知らせ</a>
       <a href="#entry" class="entry">エントリー</a>
     </nav>
     <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
@@ -555,7 +570,9 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     </button>
   </div>
 </header>
-<div class="nav-backdrop" id="navBackdrop" hidden></div>
+<div class="nav-layer" id="navLayer" aria-hidden="true">
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -598,28 +615,6 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
 
   <div class="scrollcue" aria-hidden="true"><span>SCROLL</span><i></i></div>
-</section>
-
-<!-- ============ お知らせ ============ -->
-<section class="news" id="news">
-  <div class="wrap">
-    <div class="news-head rise">
-      <h2>お知らせ</h2>
-      <p class="eyebrow" style="margin:0">Announcements</p>
-    </div>
-    <ul class="news-list">
-      <li class="rise" data-d="1">
-        <a href="#outline">
-          <time datetime="2026-07-24">2026.07.24</time>
-          <span class="ttl">
-            ゴルフコンペ開催のご案内｜参加者募集中
-            <small>2026年11月17日（火）／東条の森カントリークラブ 大蔵コース</small>
-          </span>
-          <span class="more">詳細を見る →</span>
-        </a>
-      </li>
-    </ul>
-  </div>
 </section>
 
 <!-- ============ ABOUT ============ -->
@@ -862,6 +857,28 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
 </section>
 
+<!-- ============ お知らせ ============ -->
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="news-head rise">
+      <h2>お知らせ</h2>
+      <p class="eyebrow" style="margin:0">Announcements</p>
+    </div>
+    <ul class="news-list">
+      <li class="rise" data-d="1">
+        <a href="#outline">
+          <time datetime="2026-07-24">2026.07.24</time>
+          <span class="ttl">
+            ゴルフコンペ開催のご案内｜参加者募集中
+            <small>2026年11月17日（火）／東条の森カントリークラブ 大蔵コース</small>
+          </span>
+          <span class="more">詳細を見る →</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -881,13 +898,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <div>
         <h4>Menu</h4>
         <ul>
-          <li><a href="#news">お知らせ</a></li>
           <li><a href="#about">大会について</a></li>
           <li><a href="#outline">開催概要</a></li>
           <li><a href="#schedule">当日の流れ</a></li>
           <li><a href="#prize">賞典</a></li>
           <li><a href="#venue">会場</a></li>
           <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#news">お知らせ</a></li>
           <li><a href="#entry">エントリー</a></li>
         </ul>
       </div>
@@ -907,22 +924,31 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 </footer>
 
 <script>
-// ヘッダーの背景切り替え
+// ヘッダーの背景切り替え / モバイルメニュー
 const hd = document.getElementById('hd');
-const onScroll = () => hd.classList.toggle('scrolled', window.scrollY > 60);
-onScroll();
-window.addEventListener('scroll', onScroll, {passive:true});
-
-// モバイルメニュー
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
+const navLayer = document.getElementById('navLayer');
 const navBackdrop = document.getElementById('navBackdrop');
 const bar = document.querySelector('#hd .bar');
 const mqNav = window.matchMedia('(max-width:900px)');
+let lockedScrollY = 0;
+
+const onScroll = () => {
+  hd.classList.toggle('scrolled', window.scrollY > 60);
+};
+onScroll();
+window.addEventListener('scroll', onScroll, {passive:true});
+
+const preventBackgroundScroll = (e) => {
+  if (nav.contains(e.target)) return;
+  e.preventDefault();
+};
 const placeNav = () => {
   if (mqNav.matches) {
-    document.body.appendChild(navBackdrop);
-    document.body.appendChild(nav);
+    navLayer.appendChild(navBackdrop);
+    navLayer.appendChild(nav);
+    document.body.appendChild(navLayer);
   } else if (bar && burger) {
     bar.insertBefore(nav, burger);
     setMenuOpen(false);
@@ -930,12 +956,25 @@ const placeNav = () => {
 };
 const setMenuOpen = (open) => {
   nav.classList.toggle('open', open);
+  navLayer.classList.toggle('is-open', open);
+  navLayer.setAttribute('aria-hidden', String(!open));
   burger.classList.toggle('is-open', open);
   burger.setAttribute('aria-expanded', String(open));
   burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
   navBackdrop.classList.toggle('show', open);
   navBackdrop.hidden = !open;
-  document.body.style.overflow = open ? 'hidden' : '';
+  if (open) {
+    lockedScrollY = window.scrollY;
+    document.documentElement.classList.add('nav-lock');
+    document.body.classList.add('nav-lock');
+    nav.scrollTop = 0;
+    document.addEventListener('touchmove', preventBackgroundScroll, {passive:false});
+  } else {
+    document.documentElement.classList.remove('nav-lock');
+    document.body.classList.remove('nav-lock');
+    document.removeEventListener('touchmove', preventBackgroundScroll);
+    window.scrollTo(0, lockedScrollY);
+  }
 };
 burger.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
 navBackdrop.addEventListener('click', () => setMenuOpen(false));
