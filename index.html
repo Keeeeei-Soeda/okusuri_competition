@@ -632,12 +632,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="about-grid">
       <div class="rise">
         <p class="eyebrow">About the Cup</p>
-        <h2 class="h2"><span class="h2-line">競うためではなく、</span><span class="h2-line"><em>新しい仲間を増やすための一日に。</em></span></h2>
+        <h2 class="h2"><span class="h2-line">競うためではなく、</span><span class="h2-line"><em>新しい輪を広げるための一日に。</em></span></h2>
       </div>
       <div class="rise" data-d="1">
-        <p class="lede">普段生活をしているとついつい同じコミュニティに固まりがち。毎日会うメンバー、毎日通う場所。</p>
-        <p class="lede">この「おくすりコンペ」では、そんな日常に「おくすり」でちょっとだけ彩りが加わる、そんな一日になるかも？</p>
-        <p class="lede">一緒にコースを歩いて交流を深めましょう！「素敵な縁」ができますように。</p>
+        <p class="lede">毎日会うメンバー、毎日通う場所。</p>
+        <p class="lede">この「おくすりコンペ」では、そんな日常にちょっとだけ彩りが加わる、そんな一日になるかも？</p>
+        <p class="lede">一緒にコースを歩いて交流を深めましょう！</p>
+        <p class="lede">「素敵な輪」が広がりますように。</p>
       </div>
     </div>
 
@@ -855,14 +856,14 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   </div>
   <div class="wrap inner">
     <p class="eyebrow rise" style="justify-content:center">Entry</p>
-    <h2 class="rise" data-d="1">11月17日、<br>おくすりコンペでお会いしましょう。</h2>
+    <h2 class="rise" data-d="1">11月17日<br>おくすりコンペで<br>お会いしましょう。</h2>
     <p class="deadline rise" data-d="2"><i class="dot"></i>開催日 <b>2026年11月17日（火）</b>／ 定員 16名（4組）</p>
     <div class="hero-cta rise" data-d="2">
       <a href="https://lin.ee/zrJ3EsF" class="gold-btn" target="_blank" rel="noopener noreferrer">エントリーはこちらから</a>
       <a href="#outline" class="ghost-btn">開催概要を見る</a>
     </div>
-    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">公式LINEが開きます。友だち追加のうえ、メッセージで次の内容をお送りください。<br><b style="color:var(--gold-light);font-weight:500">①お名前　②年齢　③エントリーの旨</b></p>
-    <p class="lede rise" data-d="3" style="margin:1.2rem auto 0;text-align:center">参加費は当日集金（合計 11,590円）です。<br>ご不明な点は公式LINEまたは事務局（pharnewton@gmail.com）までお問い合わせください。</p>
+    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">公式LINEが開きます。<br>友だち追加のうえ、メッセージで次の内容をお送りください。<br><b style="color:var(--gold-light);font-weight:500">①お名前　②年齢　③エントリーの旨</b></p>
+    <p class="lede rise" data-d="3" style="margin:1.2rem auto 0;text-align:center">参加費は当日集金（合計 11,590円）です。<br>ご不明な点は公式LINEまでお問い合わせください。</p>
   </div>
 </section>
 
@@ -901,7 +902,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <div class="foot-line">
           <h4>Official LINE</h4>
           <img src="images/LINE_QRcode.png" alt="おくすりコンペ 公式LINE QRコード" width="112" height="112">
-          <span class="line-id"><a href="https://lin.ee/zrJ3EsF" target="_blank" rel="noopener noreferrer">@786dcqua</a></span>
+          <span class="line-id"><a href="https://lin.ee/zrJ3EsF" target="_blank" rel="noopener noreferrer">LINE公式アカウントの登録はこちらから</a></span>
         </div>
       </div>
       <div>
@@ -965,7 +966,8 @@ const placeNav = () => {
     setMenuOpen(false);
   }
 };
-const setMenuOpen = (open) => {
+const setMenuOpen = (open, {restoreScroll = true} = {}) => {
+  const wasOpen = nav.classList.contains('open');
   nav.classList.toggle('open', open);
   navLayer.classList.toggle('is-open', open);
   navLayer.setAttribute('aria-hidden', String(!open));
@@ -984,12 +986,15 @@ const setMenuOpen = (open) => {
     document.documentElement.classList.remove('nav-lock');
     document.body.classList.remove('nav-lock');
     document.removeEventListener('touchmove', preventBackgroundScroll);
-    window.scrollTo(0, lockedScrollY);
+    // アンカー遷移時はブラウザのスクロールに任せ、閉じる操作のときだけ位置を復元
+    if (wasOpen && restoreScroll) window.scrollTo(0, lockedScrollY);
   }
 };
 burger.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
 navBackdrop.addEventListener('click', () => setMenuOpen(false));
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenuOpen(false)));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  setMenuOpen(false, {restoreScroll: false});
+}));
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && nav.classList.contains('open')) setMenuOpen(false);
 });
