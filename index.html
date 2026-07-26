@@ -154,8 +154,17 @@ nav .entry{
   padding:.62em 1.25em;border-radius:2px;
 }
 nav .entry:hover{background:var(--gold);color:#10301F}
-.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
-.burger span{display:block;width:26px;height:1px;background:var(--gold-light);margin:6px 0;transition:.35s}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;position:relative;z-index:80}
+.burger span{display:block;width:26px;height:1px;background:var(--gold-light);margin:6px 0;transition:.35s;transform-origin:center}
+.burger.is-open span:first-child{transform:translateY(7px) rotate(45deg)}
+.burger.is-open span:last-child{transform:translateY(-7px) rotate(-45deg)}
+.nav-backdrop{
+  position:fixed;inset:0;z-index:65;
+  background:rgba(7,25,15,.55);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .35s ease,visibility .35s ease;
+}
+.nav-backdrop.show{opacity:1;visibility:visible;pointer-events:auto}
 
 /* ---------- ヒーロー ---------- */
 .hero{
@@ -488,7 +497,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
   .about-grid{grid-template-columns:1fr}
   .burger{display:block}
   nav{
-    position:fixed;inset:0 0 0 auto;width:min(78vw,320px);
+    position:fixed;inset:0 0 0 auto;width:min(78vw,320px);z-index:70;
     background:rgba(7,25,15,.97);backdrop-filter:blur(16px);
     flex-direction:column;align-items:flex-start;justify-content:center;
     gap:1.8rem;padding:0 2.2rem;border-left:1px solid var(--green-line);
@@ -527,11 +536,12 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <a href="#gallery">ギャラリー</a>
       <a href="#entry" class="entry">エントリー</a>
     </nav>
-    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
       <span></span><span></span>
     </button>
   </div>
 </header>
+<div class="nav-backdrop" id="navBackdrop" hidden></div>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -557,8 +567,8 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     </div>
 
     <p class="kicker rise" data-d="1">Invitational Okusuri Competition </p>
-    <h1 class="rise" data-d="1">その一打が<br><span class="g">次の縁になる</span></h1>
-    <p class="sub rise" data-d="2">普段は交流する機会のない方々が、職種や立場を超えて一日を共に過ごすコンペです。<br>スコアの巧拙は問いません。<br>ぜひ楽しくプレーを楽しみましょう！</p>
+    <h1 class="rise" data-d="1">その一打から、<br><span class="g">輪がひろがる</span></h1>
+    <p class="sub rise" data-d="2">職種や立場を超えて一日を共に過ごすコンペです。<br>スコアの巧拙は問いません。<br>ぜひ楽しくプレーを楽しみましょう！</p>
 
     <dl class="meta rise" data-d="2">
       <div><dt>Date</dt><dd>2026.11.17（火）</dd></div>
@@ -615,7 +625,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 
     <div class="pillars">
       <div class="pillar rise"><h3>組み合わせは主催者が編成</h3><p>職種・所属・経験年数のバランスを見て4組を編成します。事前にラインでお知らせします！</p></div>
-      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホールを用いたハンディキャップ方式で、平均スコア110前後の方にも上位入賞の可能性があります。初参加の方が上位に入るのは珍しくありません。</p></div>
+      <div class="pillar rise" data-d="1"><h3>スコアは新ペリア方式</h3><p>隠しホールを用いたハンディキャップ方式で、平均スコア110前後の方にも上位入賞の可能性があります。</p></div>
       <div class="pillar rise" data-d="2"><h3>表彰までが本編</h3><p>プレー後は表彰を行います。コンペ会費は賞品代等に充当し、全参加者に賞品が渡るよう飛び賞を設定します。</p></div>
     </div>
   </div>
@@ -627,7 +637,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="rise">
       <p class="eyebrow">Tournament Outline</p>
       <h2 class="h2">開催概要</h2>
-      <p class="lede">参加費は当日集金ですので会費4,000円をお持ちください。<br>会費は賞品代等に充当いたします。</p>
+      <p class="lede">参加費：11,590円（プレー代：7,590円、会費：4,000円）<br>会費は当日集めます。</p>
     </div>
 
     <div class="spec rise" data-d="1" style="margin-top:3.4rem">
@@ -648,7 +658,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <dd>18ホール ストロークプレー・新ペリア方式<small>ローカルルールはスタート室掲示に準じます。</small></dd>
         <dt>参加費</dt>
         <dd><b>合計 11,590円</b>
-          <small>プレー代 7,590円 ＋ コンペ会費 4,000円。コンペ会費は賞品代等に充当いたします。</small>
+          <small>プレー代 7,590円 ＋ 会費 4,000円。会費は当日集めます。会費は賞品代等に充当いたします。</small>
         </dd>
         <dt>定員</dt>
         <dd>16名（4組）<small>定員に達し次第、締め切ります。キャンセル待ちを受け付けます。</small></dd>
@@ -892,15 +902,22 @@ window.addEventListener('scroll', onScroll, {passive:true});
 // モバイルメニュー
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
-burger.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
+const navBackdrop = document.getElementById('navBackdrop');
+const setMenuOpen = (open) => {
+  nav.classList.toggle('open', open);
+  burger.classList.toggle('is-open', open);
   burger.setAttribute('aria-expanded', String(open));
   burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  navBackdrop.classList.toggle('show', open);
+  navBackdrop.hidden = !open;
+  document.body.style.overflow = open ? 'hidden' : '';
+};
+burger.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
+navBackdrop.addEventListener('click', () => setMenuOpen(false));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenuOpen(false)));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && nav.classList.contains('open')) setMenuOpen(false);
 });
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  nav.classList.remove('open');
-  burger.setAttribute('aria-expanded','false');
-}));
 
 // スクロール出現
 const items = document.querySelectorAll('.rise');
