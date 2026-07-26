@@ -412,7 +412,7 @@ section{position:relative}
 /* ---------- フッター ---------- */
 footer{background:var(--green-deep);border-top:1px solid var(--green-line);padding:clamp(3.5rem,7vw,5.5rem) 0 2.5rem}
 .foot-grid{display:grid;gap:2.8rem}
-@media(min-width:840px){.foot-grid{grid-template-columns:1.35fr .9fr 1.15fr auto;align-items:start}}
+@media(min-width:840px){.foot-grid{grid-template-columns:1.15fr .85fr 1.55fr;align-items:start}}
 .foot-grid h4{font-family:var(--display);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem;font-weight:500}
 .foot-grid p,.foot-grid li,.foot-grid dd{font-size:.83rem;color:var(--ivory-dim);letter-spacing:.03em}
 .foot-grid ul{list-style:none;display:grid;gap:.6rem}
@@ -421,12 +421,13 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 .foot-grid dt{font-size:.72rem;letter-spacing:.14em;color:var(--ivory-faint)}
 .foot-grid a[href^="mailto:"],.foot-grid a[href*="line.me"],.foot-grid a[href*="lin.ee"]{color:var(--gold-light);transition:color .3s}
 .foot-grid a[href^="mailto:"]:hover,.foot-grid a[href*="line.me"]:hover,.foot-grid a[href*="lin.ee"]:hover{color:var(--gold)}
+.foot-brand p{margin-bottom:1.6rem}
 .foot-line{
-  text-align:center;
+  text-align:left;
 }
 .foot-line h4{margin-bottom:1rem}
 .foot-line img{
-  width:112px;height:112px;margin:0 auto;
+  width:112px;height:112px;margin:0;
   background:#fff;padding:8px;border:1px solid var(--green-line);
 }
 .foot-line .line-id{
@@ -795,12 +796,17 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div>
+      <div class="foot-brand">
         <a href="#top" class="brand" style="margin-bottom:1.2rem">
           <img src="images/logo.png" alt="" width="40" height="40">
           <span class="brand-text"><b>おくすりコンペ</b><span class="brand-sub">2026</span></span>
         </a>
         <p>人の健康を守る「おくすり」を中心に普段は会わない方々と交流を深めてください</p>
+        <div class="foot-line">
+          <h4>Official LINE</h4>
+          <img src="images/LINE_QRcode.png" alt="おくすりコンペ 公式LINE QRコード" width="112" height="112">
+          <span class="line-id"><a href="https://lin.ee/zrJ3EsF" target="_blank" rel="noopener noreferrer">@786dcqua</a></span>
+        </div>
       </div>
       <div>
         <h4>Menu</h4>
@@ -818,17 +824,12 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <div>
         <h4>Information</h4>
         <dl>
-          <dt>主催</dt><dd>メディカルゴルフ交流会</dd>
+          <dt>主催</dt><dd>おくすりコンペ</dd>
           <dt>開催日</dt><dd>2026年11月17日（火）</dd>
           <dt>会場</dt><dd>東条の森カントリークラブ 大蔵コース<br>兵庫県加東市大畑1071-7-2</dd>
           <dt>事務局</dt><dd><a href="mailto:pharnewton@gmail.com">pharnewton@gmail.com</a></dd>
           <dt>LINE</dt><dd><a href="https://lin.ee/zrJ3EsF" target="_blank" rel="noopener noreferrer">@786dcqua</a></dd>
         </dl>
-      </div>
-      <div class="foot-line">
-        <h4>Official LINE</h4>
-        <img src="images/LINE_QRcode.png" alt="おくすりコンペ 公式LINE QRコード" width="112" height="112">
-        <span class="line-id"><a href="https://lin.ee/zrJ3EsF" target="_blank" rel="noopener noreferrer">@786dcqua</a></span>
       </div>
     </div>
     <p class="copy">© 2026 おくすりコンペ. All Rights Reserved.</p>
