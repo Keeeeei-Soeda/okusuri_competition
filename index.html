@@ -212,20 +212,27 @@ section{position:relative}
 /* ---------- 大会について ---------- */
 .about-grid{
   display:grid;
-  grid-template-columns:minmax(0,1.5fr) minmax(0,.95fr);
-  gap:clamp(2rem,5vw,4.5rem);
+  grid-template-columns:minmax(0,1.55fr) minmax(0,.9fr);
+  gap:clamp(1.8rem,4vw,3.5rem);
   align-items:start;
 }
 .about-grid .h2{
-  font-size:clamp(1.5rem,2.7vw,2.3rem);
-  letter-spacing:.03em;
-  max-width:14em;
+  font-size:clamp(1.35rem,2.2vw,2.05rem);
+  letter-spacing:.02em;
+  line-height:1.5;
+}
+.about-grid .h2 .h2-line{
+  display:block;
+  white-space:nowrap;
 }
 .pillars{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:3.4rem}
 .pillar{background:var(--green-deep);padding:2.2rem clamp(1.4rem,3vw,2.4rem)}
 .pillar h3{font-family:var(--jp);font-weight:400;font-size:1.06rem;letter-spacing:.05em;margin-bottom:.7rem;color:var(--gold-light)}
 .pillar p{font-size:.87rem;color:var(--ivory-dim);line-height:1.95}
 @media(min-width:760px){.pillars{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:759px){
+  .about-grid .h2 .h2-line{white-space:normal}
+}
 
 /* ---------- 開催概要 ---------- */
 .spec{border:1px solid rgba(18,59,39,.16);background:#fff;box-shadow:0 30px 70px -50px rgba(11,42,27,.6)}
@@ -315,8 +322,16 @@ section{position:relative}
 .venue{display:grid;gap:clamp(2.4rem,5vw,4.5rem);align-items:center}
 @media(min-width:900px){.venue{grid-template-columns:1.05fr .95fr}}
 .venue .h2{
-  font-size:clamp(1.35rem,2.5vw,2.05rem);
-  letter-spacing:.03em;
+  font-size:clamp(1.2rem,2vw,1.7rem);
+  letter-spacing:.02em;
+  line-height:1.5;
+}
+.venue .h2 .h2-line{
+  display:block;
+  white-space:nowrap;
+}
+@media(max-width:899px){
+  .venue .h2 .h2-line{white-space:normal}
 }
 .venue .map-link{
   display:inline-flex;align-items:center;gap:.45em;
@@ -542,7 +557,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
     <div class="about-grid">
       <div class="rise">
         <p class="eyebrow">About the Cup</p>
-        <h2 class="h2">競うためではなく、<br><em>出会うために回る一日。</em></h2>
+        <h2 class="h2"><span class="h2-line">競うためではなく、</span><span class="h2-line"><em>出会うために回る一日。</em></span></h2>
       </div>
       <div class="rise" data-d="1">
         <p class="lede">普段生活をしているとついつい同じコミュニティに固まりがち。毎日会う同僚、毎日会うメンバー、毎日通う場所。</p>
@@ -694,14 +709,14 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       </div>
       <div class="rise" data-d="1">
         <p class="eyebrow">The Course</p>
-        <h2 class="h2">東条の森カントリークラブ<br><em>大蔵コース</em></h2>
+        <h2 class="h2"><span class="h2-line">東条の森カントリークラブ</span><span class="h2-line"><em>大蔵コース</em></span></h2>
         <p class="lede">〒673-1325 兵庫県加東市大畑1071-7-2。中国自動車道「ひょうご東条IC」より約7km。樹木と池が巧みに配された27ホールズの丘陵コースです。</p>
         <p class="lede">当日はINコースよりスタートします。組時間は 8:00／8:07／8:15／8:22 の全4組です。集合は7:30、チェックインはスタート30分前までにお済ませください。</p>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E6%9D%A1%E3%81%AE%E6%A3%AE%E3%82%AB%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%96+%E5%A4%A7%E8%94%B5%E3%82%B3%E3%83%BC%E3%82%B9+%E5%85%B5%E5%BA%AB%E7%9C%8C%E5%8A%A0%E6%9D%B1%E5%B8%82%E5%A4%A7%E7%95%911071-7-2" target="_blank" rel="noopener noreferrer">Googleマップで開く →</a>
         <dl class="venue-stats">
-          <div><dt>Par</dt><dd>108</dd></div>
-          <div><dt>Yards</dt><dd>9,563<i>Y</i></dd></div>
-          <div><dt>Holes</dt><dd>27</dd></div>
+          <div><dt>Par</dt><dd>72</dd></div>
+          <div><dt>Yards</dt><dd>6,148<i>Y</i></dd></div>
+          <div><dt>Holes</dt><dd>18</dd></div>
         </dl>
       </div>
     </div>
