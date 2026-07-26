@@ -52,7 +52,10 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:5.5rem; /* 固定ヘッダー分、アンカー位置をずらす */
+}
 body{
   background:var(--green-deep);
   color:var(--ivory);
@@ -125,7 +128,7 @@ img{max-width:100%;display:block}
 
 /* ---------- ヘッダー ---------- */
 header{
-  position:fixed;top:0;left:0;right:0;z-index:80;
+  position:fixed;top:0;left:0;right:0;z-index:60;
   transition:.5s ease;
   border-bottom:1px solid transparent;
 }
@@ -153,7 +156,7 @@ nav .entry{
   padding:.62em 1.25em;border-radius:2px;
 }
 nav .entry:hover{background:var(--gold);color:#10301F}
-.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;position:relative;z-index:81}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:26px;height:1px;background:var(--gold-light);margin:6px 0;transition:.35s;transform-origin:center}
 .burger.is-open span:first-child{transform:translateY(7px) rotate(45deg)}
 .burger.is-open span:last-child{transform:translateY(-7px) rotate(-45deg)}
@@ -508,12 +511,18 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
 /* ---------- レスポンシブ ---------- */
 @media(max-width:900px){
   .about-grid{grid-template-columns:1fr}
-  .burger{display:block}
+  .burger{
+    display:block;
+    position:fixed;
+    top:calc(1.1rem + env(safe-area-inset-top, 0px));
+    right:var(--pad);
+    z-index:80;
+  }
   .nav-layer{display:block}
   nav{
     position:absolute;
     top:0;right:0;bottom:0;
-    width:min(82vw,320px);
+    width:min(70vw,260px);
     height:auto;
     max-height:none;
     background:rgba(7,25,15,.98);
@@ -941,7 +950,7 @@ onScroll();
 window.addEventListener('scroll', onScroll, {passive:true});
 
 const preventBackgroundScroll = (e) => {
-  if (nav.contains(e.target)) return;
+  if (nav.contains(e.target) || burger.contains(e.target)) return;
   e.preventDefault();
 };
 const placeNav = () => {
@@ -949,7 +958,9 @@ const placeNav = () => {
     navLayer.appendChild(navBackdrop);
     navLayer.appendChild(nav);
     document.body.appendChild(navLayer);
+    document.body.appendChild(burger);
   } else if (bar && burger) {
+    bar.appendChild(burger);
     bar.insertBefore(nav, burger);
     setMenuOpen(false);
   }
