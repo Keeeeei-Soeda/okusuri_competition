@@ -210,7 +210,17 @@ section{position:relative}
 }
 
 /* ---------- 大会について ---------- */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(0,.95fr);
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:start;
+}
+.about-grid .h2{
+  font-size:clamp(1.5rem,2.7vw,2.3rem);
+  letter-spacing:.03em;
+  max-width:14em;
+}
 .pillars{display:grid;gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:3.4rem}
 .pillar{background:var(--green-deep);padding:2.2rem clamp(1.4rem,3vw,2.4rem)}
 .pillar h3{font-family:var(--jp);font-weight:400;font-size:1.06rem;letter-spacing:.05em;margin-bottom:.7rem;color:var(--gold-light)}
@@ -304,6 +314,17 @@ section{position:relative}
 /* ---------- 会場 ---------- */
 .venue{display:grid;gap:clamp(2.4rem,5vw,4.5rem);align-items:center}
 @media(min-width:900px){.venue{grid-template-columns:1.05fr .95fr}}
+.venue .h2{
+  font-size:clamp(1.35rem,2.5vw,2.05rem);
+  letter-spacing:.03em;
+}
+.venue .map-link{
+  display:inline-flex;align-items:center;gap:.45em;
+  margin-top:1.4rem;font-size:.86rem;letter-spacing:.1em;
+  color:var(--gold-light);border-bottom:1px solid var(--green-line);
+  padding-bottom:.2em;transition:border-color .3s,color .3s;
+}
+.venue .map-link:hover{border-color:var(--gold);color:var(--gold)}
 .venue-visual{position:relative;aspect-ratio:4/3;background:linear-gradient(165deg,var(--green-mid),var(--ink));overflow:hidden;border:1px solid var(--green-line)}
 .venue-visual svg{position:absolute;inset:0;width:100%;height:100%}
 .venue-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--green-line);border:1px solid var(--green-line);margin-top:2.6rem}
@@ -376,13 +397,28 @@ section{position:relative}
 /* ---------- フッター ---------- */
 footer{background:var(--green-deep);border-top:1px solid var(--green-line);padding:clamp(3.5rem,7vw,5.5rem) 0 2.5rem}
 .foot-grid{display:grid;gap:2.8rem}
-@media(min-width:840px){.foot-grid{grid-template-columns:1.4fr 1fr 1.2fr}}
+@media(min-width:840px){.foot-grid{grid-template-columns:1.35fr .9fr 1.15fr auto;align-items:start}}
 .foot-grid h4{font-family:var(--display);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem;font-weight:500}
 .foot-grid p,.foot-grid li,.foot-grid dd{font-size:.83rem;color:var(--ivory-dim);letter-spacing:.03em}
 .foot-grid ul{list-style:none;display:grid;gap:.6rem}
 .foot-grid ul a:hover{color:var(--gold-light)}
 .foot-grid dl{display:grid;grid-template-columns:5.5rem 1fr;gap:.7rem 1rem}
 .foot-grid dt{font-size:.72rem;letter-spacing:.14em;color:var(--ivory-faint)}
+.foot-grid a[href^="mailto:"],.foot-grid a[href*="line.me"]{color:var(--gold-light);transition:color .3s}
+.foot-grid a[href^="mailto:"]:hover,.foot-grid a[href*="line.me"]:hover{color:var(--gold)}
+.foot-line{
+  text-align:center;
+}
+.foot-line h4{margin-bottom:1rem}
+.foot-line img{
+  width:112px;height:112px;margin:0 auto;
+  background:#fff;padding:8px;border:1px solid var(--green-line);
+}
+.foot-line .line-id{
+  display:block;margin-top:.85rem;
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;color:var(--ivory-dim);
+}
+.foot-line .line-id a{color:var(--gold-light)}
 .copy{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--green-line);font-size:.72rem;letter-spacing:.12em;color:var(--ivory-faint);text-align:center}
 
 /* ---------- レスポンシブ ---------- */
@@ -661,9 +697,10 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
         <h2 class="h2">東条の森カントリークラブ<br><em>大蔵コース</em></h2>
         <p class="lede">〒673-1325 兵庫県加東市大畑1071-7-2。中国自動車道「ひょうご東条IC」より約7km。樹木と池が巧みに配された27ホールズの丘陵コースです。</p>
         <p class="lede">当日はINコースよりスタートします。組時間は 8:00／8:07／8:15／8:22 の全4組です。集合は7:30、チェックインはスタート30分前までにお済ませください。</p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E6%9D%A1%E3%81%AE%E6%A3%AE%E3%82%AB%E3%83%B3%E3%83%88%E3%83%AA%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%96+%E5%A4%A7%E8%94%B5%E3%82%B3%E3%83%BC%E3%82%B9+%E5%85%B5%E5%BA%AB%E7%9C%8C%E5%8A%A0%E6%9D%B1%E5%B8%82%E5%A4%A7%E7%95%911071-7-2" target="_blank" rel="noopener noreferrer">Googleマップで開く →</a>
         <dl class="venue-stats">
-          <div><dt>Par</dt><dd>72</dd></div>
-          <div><dt>Yards</dt><dd>6,500<i>Y</i></dd></div>
+          <div><dt>Par</dt><dd>108</dd></div>
+          <div><dt>Yards</dt><dd>9,563<i>Y</i></dd></div>
           <div><dt>Holes</dt><dd>27</dd></div>
         </dl>
       </div>
@@ -734,7 +771,7 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
       <a href="#outline" class="gold-btn">開催概要を見る</a>
       <a href="#news" class="ghost-btn">お知らせを見る</a>
     </div>
-    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">参加費は当日集金（合計 11,590円）です。<br>ご不明な点は事務局までお問い合わせください。<br>medical-golf-cup@example.jp ／ 平日 10:00–17:00</p>
+    <p class="lede rise" data-d="3" style="margin:2.6rem auto 0;text-align:center">参加費は当日集金（合計 11,590円）です。<br>ご不明な点は公式LINE（@786dcqua）または事務局までお問い合わせください。<br>pharnewton@gmail.com</p>
   </div>
 </section>
 
@@ -768,8 +805,14 @@ footer{background:var(--green-deep);border-top:1px solid var(--green-line);paddi
           <dt>主催</dt><dd>メディカルゴルフ交流会</dd>
           <dt>開催日</dt><dd>2026年11月17日（火）</dd>
           <dt>会場</dt><dd>東条の森カントリークラブ 大蔵コース<br>兵庫県加東市大畑1071-7-2</dd>
-          <dt>事務局</dt><dd>medical-golf-cup@example.jp</dd>
+          <dt>事務局</dt><dd><a href="mailto:pharnewton@gmail.com">pharnewton@gmail.com</a></dd>
+          <dt>LINE</dt><dd><a href="https://line.me/R/ti/p/@786dcqua" target="_blank" rel="noopener noreferrer">@786dcqua</a></dd>
         </dl>
+      </div>
+      <div class="foot-line">
+        <h4>Official LINE</h4>
+        <img src="images/LINE_QRcode.png" alt="おくすりコンペ 公式LINE QRコード" width="112" height="112">
+        <span class="line-id"><a href="https://line.me/R/ti/p/@786dcqua" target="_blank" rel="noopener noreferrer">@786dcqua</a></span>
       </div>
     </div>
     <p class="copy">© 2026 おくすりコンペ. All Rights Reserved.</p>
